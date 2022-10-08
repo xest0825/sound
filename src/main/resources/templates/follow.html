@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+  <!-- 상태바 색상 / Chrome, Firefox, Opera -->
+  <meta content='#121212' name='theme-color'>
+  <!-- 상태바 색상 / Windows Phone -->
+  <meta content='#121212' name='msapplication-navbutton-color'>
+  <!-- 상태바 색상 / iOS Safari -->
+  <meta content='#121212' name='apple-mobile-web-app-status-bar-style'>
+  <meta content='yes' name='apple-mobile-web-app-capable'>
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/main.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="js/main.js" charset="utf-8"></script>
+  <title>Plasma</title>
+</head>
+
+<body>
+  <div class="search-top-area">
+    <div class="search-area">
+      <input type="search" placeholder="Search">
+      <button type="button" class="btn-search"></button>
+    </div>
+    <div class="cancel-area">
+      <button type="button" class="btn-cancel">Cancel</button>
+    </div>
+  </div>
+
+  <div class="follow-tab-area">
+    <div class="tab">
+      <button class="tablinks active" onclick="openTab(event, 'Follower')">128 Follower</button>
+      <button class="tablinks" onclick="openTab(event, 'Following')">256 Following</button>
+    </div>
+
+    <div id="Follower" class="tabcontent" style="display:block">
+        <!--track box-->
+        <div class="detail-music-box d-flex-between mb8">
+          <div class="d-flex-center">
+            <div class="music-track radius"><img src="images/cat.jpg" alt="프로필사진"></div>
+            <div class="account-profile-text">
+              <p class="f15 fw400">goldjujube</p><i class="follow">· Follow</i>
+              <span class="c-w50 f12">#tired</span>
+            </div>
+          </div>
+          <button type="button" class="btn-delete">delete</button>
+        </div>
+        <!--//track box-->
+        <div class="detail-music-box d-flex-between mb8">
+          <div class="d-flex-center">
+            <div class="music-track radius"><img src="images/cat.jpg" alt="프로필사진"></div>
+            <div class="account-profile-text">
+              <p class="f15 fw400">goldjujube</p><i class="follow">· Follow</i>
+              <span class="c-w50 f12">#tired</span>
+            </div>
+          </div>
+          <button type="button" class="btn-delete">delete</button>
+        </div>
+        <!--//track box-->
+
+    </div>
+
+    <div id="Following" class="tabcontent">
+      <!--track box-->
+      <div class="detail-music-box d-flex-between mb8">
+        <div class="d-flex-center">
+          <div class="music-track radius"><img src="images/cat.jpg" alt="프로필사진"></div>
+          <div class="account-profile-text">
+            <p class="f15 fw400">goldjujube</p>
+            <span class="c-w50 f12">#tired</span>
+          </div>
+        </div>
+        <button type="button" class="btn-Following">Following</button>
+      </div>
+      <!--//track box-->
+      <div class="detail-music-box d-flex-between mb8">
+        <div class="d-flex-center">
+          <div class="music-track radius"><img src="images/cat.jpg" alt="프로필사진"></div>
+          <div class="account-profile-text">
+            <p class="f15 fw400">goldjujube</p>
+            <span class="c-w50 f12">#tired</span>
+          </div>
+        </div>
+        <button type="button" class="btn-Following">Following</button>
+      </div>
+      <!--//track box-->
+    </div>
+  </div>
+
+
+  <script>
+  // 상단 탭 스크립트
+    function openTab(evt, tabName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(tabName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,12 @@
+
+@font-face {
+  font-family: 'Futura';
+  font-style: normal;
+  font-weight: 400;
+  src: url(./FuturaStd-Medium.eot);
+  src: local('FuturaStd-Medium'),
+       local('FuturaStd Medium'),
+       url(font/FuturaStd-Medium.eot) format('embedded-opentype'),
+       url(font/FuturaStd-Medium.woff) format('woff'),
+       url(font/FuturaStd-Medium.ttf) format('truetype');
+}
