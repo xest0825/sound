@@ -10,6 +10,13 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class PageController {
 
+    @RequestMapping("/")
+    ModelAndView goRoot() {
+        log.info("/");
+        ModelAndView mv = new ModelAndView("index");
+        return mv;
+    }
+
     @RequestMapping({"/published/{page}" + ".html", "/{page}" + ".html"})
     ModelAndView goPage(@PathVariable String page) {
         log.info(page);
