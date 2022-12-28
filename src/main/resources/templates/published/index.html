@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:tm="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <title>[plasma] publishing list</title>
+</head>
+<!--
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+-->
+<script src="js/jquery-3.6.1.min.js"></script>
+<style media="screen">
+  * {
+    padding: 0;
+    margin: 0;
+  }
+
+  .content-btn {
+    margin-left: 20px;
+  }
+
+  table {
+    width: 800px;
+    text-align: center;
+  }
+
+  table thead {
+    text-align: center;
+    background: #ddd;
+  }
+
+  table td {
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+  }
+
+  table td,
+  table th {
+    padding: 5px 10px;
+  }
+</style>
+<script>
+  const page_id = '[[${page_id}]]';
+  $(document).ready(function(){
+    console.log('page_id : ' + page_id);
+  });
+
+  $(function() { //iframe 링크 변경
+    $(".content-btn").on('click', function() {
+      var target = $(this).prev().attr("href");
+      console.log(target);
+      $("#myFrame").attr("src", target);
+    });
+
+  }); //end
+</script>
+
+<body>
+  <section style="width:1200px; margin:20px auto;">
+    <h2 style="padding-bottom:20px;">[plasma] publishing lists</h2>
+    <div style="float:left">
+      <img src="/images/splash-logo.svg" id="myFrame" width="360" height="740"/>
+      <p>삼성 갤럭시 S8+ 사이즈 (360*740)</p>
+    </div>
+
+    <div style="float:right; height:740px; overflow:auto; border:1px solid #ddd;">
+
+      <table style="margin-bottom:50px;">
+        <colgroup>
+          <col width="10%">
+          <col width="10%">
+          <col width="40%">
+          <col width="40%">
+        </colgroup>
+        <thead>
+          <th>영역</th>
+          <th>-</th>
+          <th>파일명</th>
+          <th>내용</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="10">sign</td>
+            <td>1</td>
+            <td>
+              <a href="splash.html" target="_blank">splash.html</a>
+              <button type="button" class="content-btn">미리보기</button>
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>2-1</td>
+            <td>
+              <a href="login.html" target="_blank">login.html</a>
+              <button type="button" class="content-btn">미리보기</button>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>2-2</td>
+            <td>
+              <a href="Verify_your_email.html" target="_blank">Verify_your_email.html</a>
+              <button type="button" class="content-btn">미리보기</button>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>
+              <a href="published/.html" target="_blank">.html</a>
+              <button type="button" class="content-btn">미리보기</button>
+            </td>
+            <td>sign up -> 약관확인 팝업</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>
+              <a href="sign_up_email.html" target="_blank">sign_up_email.html</a>
+              <button type="button" class="content-btn">미리보기</button>
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>
+              <a href="sign_up_nickname.html" target="_blank">sign_up_nickname.html</a>
+              <button type="button" class="content-btn">미리보기</button>
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>
+              <a href="sign_up_password.html" target="_blank">sign_up_password.html</a>
+              <button type="button" class="content-btn">미리보기</button>
+            </td>
+            <td>눈 끄고 켜기 기능<br>Forgot your password? ->메일 알림창</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>
+              <a href="sign_up_spotify.html" target="_blank">sign_up_spotify.html</a>
+              <button type="button" class="content-btn">미리보기</button>
+            </td>
+            <td>not connecte일때 버튼 디자인(connecte일때 버튼은 파일에 표기)</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>
+              <a href="sign_up_search.html" target="_blank">sign_up_search.html</a>
+              <button type="button" class="content-btn">미리보기</button>
+            </td>
+            <td>해시태그 클릭이벤트 <br><ins> .like-area 영역 스크롤이 끝날때 .pop-opacity가 사라져야합니다.</ins></td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>
+              <a href="sign_social_popup.html" target="_blank">sign_social_popup.html</a>
+              <button type="button" class="content-btn">미리보기</button>
+            </td>
+            <td>빈 팝업</td>
+          </tr>
+
+          <tr>
+            <td rowspan="8">Feed</td>
+            <td>9</td>
+            <td>
+              <a href="feed.html" target="_blank">feed.html</a>
+              <button type="button" class="content-btn">미리보기</button>
+            </td>
+            <td>text only /text+image <br> 플러스 버튼 -> 리스트</td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>
+              <a href="feed_detail_image.html" target="_blank">feed_detail_image.html</a>
+              <button type="button" class="content-btn">미리보기</button>
+            </td>
+            <td>text+image/ reply / 하단 알림창</td>
+          </tr>
+          <tr>
+            <td>11</td>
+            <td>
+              <a href="feed_detail_textOnly.html" target="_blank">feed_detail_textOnly.html</a>
+              <button type="button" class="content-btn">미리보기</button>
+            </td>
+            <td>상단 알림창 / post more 팝업 / play all 알림창 / track more 팝업</td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td>
+              <a href="detail_replyTrack.html" target="_blank">detail_replyTrack.html</a>
+              <button type="button" class="content-btn">미리보기</button>
+            </td>
+            <td>detail_replyTrack</td>
+          </tr>
+          <tr>
+            <td>13</td>
+            <td>
+              <a href="Add_to_playlist.html" target="_blank">Add_to_playlist.html</a>
+              <button type="button" class="content-btn">미리보기</button>
+            </td>
+            <td>Add_to_playlist 팝업</td>
+          </tr>
+          <tr>
+            <td>14</td>
+            <td>
+              <a href="new_playlist.html" target="_blank">new_playlist.html</a>
+              <button type="button" class="content-btn">미리보기</button>
+            </td>
+            <td>팝업</td>
+          </tr>
+
+          <tr>
+            <td>15</td>
+            <td>
+              <a href="share.html" target="_blank">share.html</a>
+              <button type="button" class="content-btn">미리보기</button>
+            </td>
+            <td>공유</td>
+          </tr>
+          <tr>
+            <td>16</td>
+            <td>
+              <a href="feed_detail_playlist.html" target="_blank">feed_detail_playlist.html</a>
+              <button type="button" class="content-btn">미리보기</button>
+            </td>
+            <td>detail_playlist</td>
+          </tr>
+
+          <tr>
+            <td rowspan="2">search</td>
+            <td>17</td>
+            <td>
+              <a href="search.html" target="_blank">search.html</a>
+              <button type="button" class="content-btn">미리보기</button>
+            </td>
+            <td>tab</td>
+          </tr>
+          <tr>
+            <td>18</td>
+            <td>
+              <a href="search_track_result.html" target="_blank">search_track_result.html</a>
+              <button type="button" class="content-btn">미리보기</button>
+            </td>
+            <td>-</td>
+          </tr>
+
+          <tr>
+            <td>alarm</td>
+            <td>19</td>
+            <td>
+              <a href="alarm.html" target="_blank">alarm.html</a>
+              <button type="button" class="content-btn">미리보기</button>
+            </td>
+            <td>-</td>
+          </tr>
+
+          <tr>
+            <td rowspan="8">account</td>
+            <td>20</td>
+            <td>
+              <a href="account.html" target="_blank">account.html</a>
+              <button type="button" class="content-btn">미리보기</button>
+            </td>
+            <td>tab / 상단 결과창 <br>setting -> setting popup</td>
+          </tr>
+          <tr>
+            <td>21</td>
+            <td>
+              <a href="account_detail.html" target="_blank">account_detail.html</a>
+              <button type="button" class="content-btn">미리보기</button>
+            </td>
+            <td>tab</td>
+          </tr>
+          <tr>
+            <td>22</td>
+            <td>
+              <a href="account_more.html" target="_blank">account_more.html</a>
+              <button type="button" class="content-btn">미리보기</button>
+            </td>
+            <td>like more버튼 -> 팝업 -> unlike 알림창<br>mailbox more 버튼 -> 팝업</td>
+          </tr>
+          <tr>
+            <td>23</td>
+            <td>
+              <a href="account_playlist_detail.html" target="_blank">account_playlist_detail.html</a>
+              <button type="button" class="content-btn">미리보기</button>
+            </td>
+            <td>playlist <br>더보기 버튼 -> 팝업<br> delete playlist-> 팝업</td>
+          </tr>
+          <tr>
+            <td>24</td>
+            <td>
+              <a href="account_playlist_detail_add_track.html" target="_blank">account_playlist_detail_add_track.html</a>
+              <button type="button" class="content-btn">미리보기</button>
+            </td>
+            <td>track select</td>
+          </tr>
+          <tr>
+            <td>25</td>
+            <td>
+              <a href="edit_playlist.html" target="_blank">edit_playlist.html</a>
+              <button type="button" class="content-btn">미리보기</button>
+            </td>
+            <td>태그 삭제 버튼 / 트랙 삭제 버튼<br>아이디 변경시 .edit 삭제</td>
+          </tr>
+          <tr>
+            <td>26</td>
+            <td>
+              <a href="new_profile.html" target="_blank">new_profile.html</a>
+              <button type="button" class="content-btn">미리보기</button>
+            </td>
+            <td>feeling 버튼 ->add hashtag popup</td>
+          </tr>
+          <tr>
+            <td>27</td>
+            <td>
+              <a href="edit_profile.html" target="_blank">edit_profile.html</a>
+              <button type="button" class="content-btn">미리보기</button>
+            </td>
+            <td>add hashtag 버튼 ->add hashtag popup</td>
+          </tr>
+
+          <tr>
+            <td rowspan="3">write</td>
+            <td>28</td>
+            <td>
+              <a href="feed_post.html" target="_blank">feed_post.html</a>
+              <button type="button" class="content-btn">미리보기</button>
+            </td>
+            <td>add hashtag 버튼 ->add hashtag popup<br> edit page와 동일 레이아웃</td>
+          </tr>
+          <tr>
+            <td>29</td>
+            <td>
+              <a href="playlist.html" target="_blank">playlist.html</a>
+              <button type="button" class="content-btn">미리보기</button>
+            </td>
+            <td>loading 화면 적용</td>
+          </tr>
+          <tr>
+            <td>30</td>
+            <td>
+              <a href="send.html" target="_blank">send.html</a>
+              <button type="button" class="content-btn">미리보기</button>
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>follow</td>
+            <td>31</td>
+            <td>
+              <a href="follow.html" target="_blank">follow.html</a>
+              <button type="button" class="content-btn">미리보기</button>
+            </td>
+            <td>tab</td>
+          </tr>
+          <tr>
+            <td rowspan="2">setting</td>
+            <td>32</td>
+            <td>
+              <a href="account_setting.html" target="_blank">account_setting.html</a>
+              <button type="button" class="content-btn">미리보기</button>
+            </td>
+            <td>tab</td>
+          </tr>
+          <tr>
+            <td>33</td>
+            <td>
+              <a href="connect_apps.html" target="_blank">connect_apps.html</a>
+              <button type="button" class="content-btn">미리보기</button>
+            </td>
+            <td>tab</td>
+          </tr>
+          <tr>
+            <td>loading</td>
+            <td>34</td>
+            <td>
+              <a href="loading.html" target="_blank">loading.html</a>
+              <button type="button" class="content-btn">미리보기</button>
+            </td>
+            <td>tab</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+</body>
+
+</html>

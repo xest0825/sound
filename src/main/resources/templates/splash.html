@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ko" dir="ltr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:tm="http://www.thymeleaf.org">
 
 <head>
    <meta charset="utf-8">
@@ -13,9 +15,24 @@
    <meta content='yes' name='apple-mobile-web-app-capable'>
    <link rel="stylesheet" href="css/common.css">
    <link rel="stylesheet" href="css/main.css">
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script src="js/jquery-3.6.1.min.js"></script>
    <script src="js/main.js" charset="utf-8"></script>
    <title>Plasma</title>
+   <script>
+      const page_id = '[[${page_id}]]';
+      $(document).ready(function(){
+         console.log('page_id : ' + page_id);
+         setTimeout(function(){
+            console.log('go to main page...');
+            location.href = '/sign-in/signin';
+            /*
+            case1. 로그인 상태인 경우 메인화면으로 이동
+            location.href = 'login';
+            case2. 로그인이 안되엉 있는 경우 로그인 화면으로 이동
+            */
+         }, 2000)
+      });
+   </script>
 </head>
 
 <body>

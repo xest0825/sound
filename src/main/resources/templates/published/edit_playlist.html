@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:tm="http://www.thymeleaf.org">
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+   <!-- 상태바 색상 / Chrome, Firefox, Opera -->
+   <meta content='#121212' name='theme-color'>
+   <!-- 상태바 색상 / Windows Phone -->
+   <meta content='#121212' name='msapplication-navbutton-color'>
+   <!-- 상태바 색상 / iOS Safari -->
+   <meta content='#121212' name='apple-mobile-web-app-status-bar-style'>
+   <meta content='yes' name='apple-mobile-web-app-capable'>
+   <link rel="stylesheet" href="css/common.css">
+   <link rel="stylesheet" href="css/main.css">
+   <script src="js/jquery-3.6.1.min.js"></script>
+   <script src="js/main.js" charset="utf-8"></script>
+   <title>Plasma</title>
+    <script>
+        const page_id = '[[${page_id}]]';
+        $(document).ready(function(){
+            console.log('page_id : ' + page_id);
+        });
+    </script>
+</head>
+<!-- 스크롤할때 header에 배경 없앨 경우 class="header-color" 삭제하세요 -->
+
+<body class="detail-bg">
+   <header class="header bgnone header-color">
+      <h2 class="top-title">Edit playlist</h2>
+      <button type="button" class="btn-close-pop"><img src="images/close.svg" alt="닫기버튼"></button>
+      <button type="button" class="btn-check"><img src="images/check.svg" alt="확인"></button>
+   </header>
+
+   <div class="menu-top">
+      <section class="wrap-14 t-center">
+         <div class="detail-cover-box">
+           <!-- 이미지 -->
+            <div class="small-cover-box">
+               <img src="images/cover_3.jpg" alt="앨범 커버 이미지">
+            </div>
+            <div class="small-cover-box">
+               <img src="images/cover_4.jpg" alt="앨범 커버 이미지">
+            </div>
+            <div class="small-cover-box">
+               <img src="images/cover_5.jpg" alt="앨범 커버 이미지">
+            </div>
+            <div class="small-cover-box">
+               <img src="images/cover_6.jpg" alt="앨범 커버 이미지">
+            </div>
+           <!-- //이미지 -->
+            <div class="edit-cover-box">
+              <img src="images/camera.svg" alt="new playlist cover image" class="new-camera">
+            </div>
+         </div>
+
+         <form>
+           <!--편집할때 class= "edit"(편집 전 폰트색상) 삭제되야함-->
+           <div class="playlist-name-area">
+             <input type="text"  value="Midnight drive" class="playlist-name edit">
+           </div>
+
+           <div class="position-re pt10 pb25">
+             <p class="edit-text-tit">Edit info</p>
+              <div contentEditable="true" class="post-box" placeholder="Talk about the music you want">
+                If you play this playlist, you are already dead. Would you like to give it a try though?
+              </div>
+               <span class="edit-text-limit">59/120</span>
+           </div>
+         </form>
+      </section>
+
+      <section>
+        <div class="tag-select-area">
+          <div class="tag-start"><img src="images/tag-c.svg" alt="태그추가 영역표시"></div>
+          <button type="button" class="btn-add-hashtag">+Add hashtags</button>
+          <span class="add-hashtag choose">#sad <button type="button" class="remove-hashtag"></button></span>
+          <span class="add-hashtag choose">#midnight <button type="button" class="remove-hashtag"></button></span>
+          <span class="add-hashtag choose">#after <button type="button" class="remove-hashtag"></button></span>
+          <span class="add-hashtag choose">#Gloomy <button type="button" class="remove-hashtag"></button></span>
+        </div>
+      </section>
+
+      <section class="wrap-14 pt20">
+         <div class="mb8">
+            <span class="user-track">41tracks</span>
+            <span class="user-track-time">1:54:55</span>
+         </div>
+         <dl>
+            <dt>
+              <div class="edit-music-box-area">
+               <div class="detail-music-box d-flex-between mb8">
+                  <div class="d-flex-center">
+                     <div class="music-track"><img src="images/cover_1.jpg" alt="앨범 표지 이미지"></div>
+                     <div class="pl12">
+                        <h4 class="f15 fw400">Fire in the hole</h4>
+                        <span class="c-w50 f12">Flames</span>
+                     </div>
+                  </div>
+                  <button type="button" class="btn-edit"></button>
+               </div>
+                 <button type="button" class="btn-bin">삭제</button>
+              </div>
+               <!--//track box-->
+
+               <div class="edit-music-box-area">
+                <div class="detail-music-box d-flex-between mb8">
+                   <div class="d-flex-center">
+                      <div class="music-track"><img src="images/cover_1.jpg" alt="앨범 표지 이미지"></div>
+                      <div class="pl12">
+                         <h4 class="f15 fw400">Fire in the hole</h4>
+                         <span class="c-w50 f12">Flames</span>
+                      </div>
+                   </div>
+                   <button type="button" class="btn-edit"></button>
+                </div>
+                  <button type="button" class="btn-bin">삭제</button>
+               </div>
+                <!--//track box-->
+                <div class="edit-music-box-area">
+                 <div class="detail-music-box d-flex-between mb8">
+                    <div class="d-flex-center">
+                       <div class="music-track"><img src="images/cover_1.jpg" alt="앨범 표지 이미지"></div>
+                       <div class="pl12">
+                          <h4 class="f15 fw400">Fire in the hole</h4>
+                          <span class="c-w50 f12">Flames</span>
+                       </div>
+                    </div>
+                    <button type="button" class="btn-edit"></button>
+                 </div>
+                   <button type="button" class="btn-bin">삭제</button>
+                </div>
+                 <!--//track box-->
+                 <div class="edit-music-box-area">
+                  <div class="detail-music-box d-flex-between mb8">
+                     <div class="d-flex-center">
+                        <div class="music-track"><img src="images/cover_1.jpg" alt="앨범 표지 이미지"></div>
+                        <div class="pl12">
+                           <h4 class="f15 fw400">Fire in the hole</h4>
+                           <span class="c-w50 f12">Flames</span>
+                        </div>
+                     </div>
+                     <button type="button" class="btn-edit"></button>
+                  </div>
+                    <button type="button" class="btn-bin">삭제</button>
+                 </div>
+                  <!--//track box-->
+
+            </dt>
+         </dl>
+      </section>
+   </div>
+   <!--result ------------------------------->
+     <div class="result">
+       <p>Deleted ‘Fire in the hole’</p>
+       <div class="position-re">
+         <button type="button" class="btn-message-close"></button>
+       </div>
+     </div>
+
+   <!--result  ------------------------------->
+</body>
+
+</html>

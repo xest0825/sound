@@ -94,6 +94,11 @@ function popupOpen2(){
   $("#popup-2").stop().animate({bottom:"0%"},200);
 };
 
+function popupClose(){
+  $(".pop-bg").css({display:"none"});
+  $(".popup").stop().animate({bottom:"-100%"},200);
+}
+
 
 //경고 팝업창 열기
 function alertPopupOpen(){

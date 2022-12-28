@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:tm="http://www.thymeleaf.org">
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+   <!-- 상태바 색상 / Chrome, Firefox, Opera -->
+   <meta content='#121212' name='theme-color'>
+   <!-- 상태바 색상 / Windows Phone -->
+   <meta content='#121212' name='msapplication-navbutton-color'>
+   <!-- 상태바 색상 / iOS Safari -->
+   <meta content='#121212' name='apple-mobile-web-app-status-bar-style'>
+   <meta content='yes' name='apple-mobile-web-app-capable'>
+   <link rel="stylesheet" href="css/common.css">
+   <link rel="stylesheet" href="css/main.css">
+   <script src="js/jquery-3.6.1.min.js"></script>
+   <script src="js/main.js" charset="utf-8"></script>
+   <title>Plasma</title>
+    <script>
+        const page_id = '[[${page_id}]]';
+        $(document).ready(function(){
+            console.log('page_id : ' + page_id);
+        });
+    </script>
+</head>
+
+<body>
+   <header class="header">
+      <h2 class="top-title">reply track</h2>
+      <button type="button" class="btn-prev">
+         <img src="images/prev.svg" alt="뒤로버 튼">
+      </button>
+      <button type="button" class="btn-done">Done</button>
+   </header>
+
+   <div class="menu-wrap">
+      <section class="wrap-14">
+             <!--track box-->
+               <div class="detail-music-box d-flex-between mb8">
+                  <div class="d-flex-center">
+                     <div class="music-track"><img src="images/cover_1.jpg" alt="앨범 표지 이미지"></div>
+                     <div class="pl12">
+                        <h4 class="f15 fw400">Fire in the hole</h4>
+                        <span class="c-w50 f12">Flames</span>
+                     </div>
+                  </div>
+                  <button type="button" class="btn-more"></button>
+               </div>
+             <!--//track box-->
+             <!--track box-->
+               <div class="detail-music-box d-flex-between mb8 active">
+                  <div class="d-flex-center">
+                     <div class="music-track"><img src="images/cover_1.jpg" alt="앨범 표지 이미지"></div>
+                     <div class="pl12">
+                        <h4 class="f15 fw400">Fire in the hole</h4>
+                        <span class="c-w50 f12">Flames</span>
+                     </div>
+                  </div>
+                  <button type="button" class="btn-more"></button>
+               </div>
+             <!--//track box-->
+             <!--track box-->
+               <div class="detail-music-box d-flex-between mb8">
+                  <div class="d-flex-center">
+                     <div class="music-track"><img src="images/cover_1.jpg" alt="앨범 표지 이미지"></div>
+                     <div class="pl12">
+                        <h4 class="f15 fw400">Fire in the hole</h4>
+                        <span class="c-w50 f12">Flames</span>
+                     </div>
+                  </div>
+                  <button type="button" class="btn-more"></button>
+               </div>
+             <!--//track box-->
+             <!--track box-->
+               <div class="detail-music-box d-flex-between mb8">
+                  <div class="d-flex-center">
+                     <div class="music-track"><img src="images/cover_1.jpg" alt="앨범 표지 이미지"></div>
+                     <div class="pl12">
+                        <h4 class="f15 fw400">Fire in the hole</h4>
+                        <span class="c-w50 f12">Flames</span>
+                     </div>
+                  </div>
+                  <button type="button" class="btn-more"></button>
+               </div>
+             <!--//track box-->
+      </section>
+   </div>
+
+    <div class="reply-area">
+      <div class="d-flex-between d-flex-center">
+        <div class="reply-user-profile">
+           <img src="images/cat.jpg" alt="프로필 사진">
+        </div>
+        <input type="text" placeholder="Search the song" class="input-reply">
+      </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:tm="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+  <!-- 상태바 색상 / Chrome, Firefox, Opera -->
+  <meta content='#121212' name='theme-color'>
+  <!-- 상태바 색상 / Windows Phone -->
+  <meta content='#121212' name='msapplication-navbutton-color'>
+  <!-- 상태바 색상 / iOS Safari -->
+  <meta content='#121212' name='apple-mobile-web-app-status-bar-style'>
+  <meta content='yes' name='apple-mobile-web-app-capable'>
+  <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <script src="/js/jquery-3.6.1.min.js"></script>
+  <script src="/js/main.js" charset="utf-8"></script>
+  <title>Plasma</title>
+  <script>
+    const page_id = '[[${page_id}]]';
+    $(document).ready(function(){
+      console.log('page_id : ' + page_id);
+
+      $('#feed-menu-btn').on('click', function () {
+        console.log('feed menu');
+        location.href = '/feed/feed';
+      });
+
+      $('#search-menu-btn').on('click', function () {
+        console.log('search menu');
+        location.href = '/search/search';
+      });
+
+      $('#notification-menu-btn').on('click', function () {
+        console.log('notification menu');
+        location.href = '/notification/notification';
+      });
+
+      $('#myhome-menu-btn').on('click', function () {
+        console.log('my home menu');
+        location.href = '/account/account';
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div class="search-top-area">
+    <div class="search-area">
+      <input type="search" placeholder="Search">
+      <button type="button" class="btn-search"></button>
+    </div>
+    <div class="cancel-area">
+      <button type="button" class="btn-cancel">Cancel</button>
+    </div>
+  </div>
+
+  <div class="search-tab-area">
+    <div class="tab">
+      <button class="tablinks active" onclick="openTab(event, 'Hot')">Hot</button>
+      <button class="tablinks" onclick="openTab(event, 'Account')">Account</button>
+      <button class="tablinks" onclick="openTab(event, 'Track')">Track</button>
+      <button class="tablinks" onclick="openTab(event, 'Playlist')">Playlist</button>
+      <button class="tablinks" onclick="openTab(event, 'Hashtag')">Hashtag</button>
+    </div>
+
+    <div id="Hot" class="tabcontent" style="display:block">
+        <!--track box-->
+        <div class="detail-music-box d-flex-between mb8">
+          <div class="d-flex-center">
+            <div class="music-track radius"><img src="/images/cat.jpg" alt="프로필사진"></div>
+            <div class="pl12">
+              <h4 class="f15 fw400">goldjujube</h4>
+              <span class="c-w50 f12">#tired</span>
+            </div>
+          </div>
+          <button type="button" class="btn-more"></button>
+        </div>
+        <!--//track box-->
+        <!--track box-->
+        <div class="detail-music-box d-flex-between mb8">
+          <div class="d-flex-center">
+            <div class="music-track"><img src="/images/cover_1.jpg" alt="앨범 표지 이미지"></div>
+            <div class="pl12">
+              <h4 class="f15 fw400">Fire in the hole</h4>
+              <span class="c-w50 f12">Flames</span>
+            </div>
+          </div>
+          <button type="button" class="btn-more"></button>
+        </div>
+        <!--//track box-->
+        <!--track box-->
+        <div class="detail-music-box d-flex-between mb8">
+          <div class="d-flex-center">
+            <div class="music-track">  <div class="small-cover-box">
+                 <img src="/images/cover_3.jpg" alt="앨범 커버 이미지">
+              </div>
+              <div class="small-cover-box">
+                 <img src="/images/cover_4.jpg" alt="앨범 커버 이미지">
+              </div>
+              <div class="small-cover-box">
+                 <img src="/images/cover_5.jpg" alt="앨범 커버 이미지">
+              </div>
+              <div class="small-cover-box">
+                 <img src="/images/cover_6.jpg" alt="앨범 커버 이미지">
+              </div></div>
+            <div class="pl12">
+              <h4 class="f15 fw400">#Midnight drive</h4>
+              <span class="c-w50 f12">68 tracks, 2:24:17</span>
+            </div>
+          </div>
+          <button type="button" class="btn-more"></button>
+        </div>
+        <!--//track box-->
+        <!--track box-->
+        <div class="detail-music-box d-flex-between mb8">
+          <div class="d-flex-center">
+            <div class="music-track"><img src="/images/tag.svg" alt="hashtag" class="hashtag-img"></div>
+            <div class="pl12">
+              <h4 class="f15 fw400">#oasis</h4>
+              <span class="c-w50 f12">6,113 posts</span>
+            </div>
+          </div>
+          <button type="button" class="btn-more"></button>
+        </div>
+        <!--//track box-->
+    </div>
+
+    <div id="Account" class="tabcontent">
+      <!--track box-->
+      <div class="detail-music-box d-flex-between mb8">
+        <div class="d-flex-center">
+          <div class="music-track radius"><img src="/images/cat.jpg" alt="프로필사진"></div>
+          <div class="pl12">
+            <h4 class="f15 fw400">goldjujube</h4>
+            <span class="c-w50 f12">#tired</span>
+          </div>
+        </div>
+        <button type="button" class="btn-more"></button>
+      </div>
+      <!--//track box-->
+      <!--track box-->
+      <div class="detail-music-box d-flex-between mb8">
+        <div class="d-flex-center">
+          <div class="music-track radius"><img src="/images/cat.jpg" alt="프로필사진"></div>
+          <div class="pl12">
+            <h4 class="f15 fw400">goldjujube</h4>
+            <span class="c-w50 f12">#tired</span>
+          </div>
+        </div>
+        <button type="button" class="btn-more"></button>
+      </div>
+      <!--//track box-->
+      <!--track box-->
+      <div class="detail-music-box d-flex-between mb8">
+        <div class="d-flex-center">
+          <div class="music-track radius"><img src="/images/cat.jpg" alt="프로필사진"></div>
+          <div class="pl12">
+            <h4 class="f15 fw400">goldjujube</h4>
+            <span class="c-w50 f12">#tired</span>
+          </div>
+        </div>
+        <button type="button" class="btn-more"></button>
+      </div>
+      <!--//track box-->
+      <!--track box-->
+      <div class="detail-music-box d-flex-between mb8">
+        <div class="d-flex-center">
+          <div class="music-track radius"><img src="/images/cat.jpg" alt="프로필사진"></div>
+          <div class="pl12">
+            <h4 class="f15 fw400">goldjujube</h4>
+            <span class="c-w50 f12">#tired</span>
+          </div>
+        </div>
+        <button type="button" class="btn-more"></button>
+      </div>
+      <!--//track box-->
+    </div>
+
+    <div id="Track" class="tabcontent">
+      <!--track box-->
+      <div class="detail-music-box d-flex-between mb8">
+        <div class="d-flex-center">
+          <div class="music-track"><img src="/images/cover_1.jpg" alt="앨범 표지 이미지"></div>
+          <div class="pl12">
+            <h4 class="f15 fw400">Fire in the hole</h4>
+            <span class="c-w50 f12">Flames</span>
+          </div>
+        </div>
+        <button type="button" class="btn-more"></button>
+      </div>
+      <!--//track box-->
+      <!--track box-->
+      <div class="detail-music-box d-flex-between mb8">
+        <div class="d-flex-center">
+          <div class="music-track"><img src="/images/cover_1.jpg" alt="앨범 표지 이미지"></div>
+          <div class="pl12">
+            <h4 class="f15 fw400">Fire in the hole</h4>
+            <span class="c-w50 f12">Flames</span>
+          </div>
+        </div>
+        <button type="button" class="btn-more"></button>
+      </div>
+      <!--//track box-->
+      <!--track box-->
+      <div class="detail-music-box d-flex-between mb8">
+        <div class="d-flex-center">
+          <div class="music-track"><img src="/images/cover_1.jpg" alt="앨범 표지 이미지"></div>
+          <div class="pl12">
+            <h4 class="f15 fw400">Fire in the hole</h4>
+            <span class="c-w50 f12">Flames</span>
+          </div>
+        </div>
+        <button type="button" class="btn-more"></button>
+      </div>
+      <!--//track box-->
+      <!--track box-->
+      <div class="detail-music-box d-flex-between mb8">
+        <div class="d-flex-center">
+          <div class="music-track"><img src="/images/cover_1.jpg" alt="앨범 표지 이미지"></div>
+          <div class="pl12">
+            <h4 class="f15 fw400">Fire in the hole</h4>
+            <span class="c-w50 f12">Flames</span>
+          </div>
+        </div>
+        <button type="button" class="btn-more"></button>
+      </div>
+      <!--//track box-->
+    </div>
+
+    <div id="Playlist" class="tabcontent">
+      <!--track box-->
+      <div class="detail-music-box d-flex-between mb8">
+        <div class="d-flex-center">
+          <div class="music-track">  <div class="small-cover-box">
+               <img src="/images/cover_3.jpg" alt="앨범 커버 이미지">
+            </div>
+            <div class="small-cover-box">
+               <img src="/images/cover_4.jpg" alt="앨범 커버 이미지">
+            </div>
+            <div class="small-cover-box">
+               <img src="/images/cover_5.jpg" alt="앨범 커버 이미지">
+            </div>
+            <div class="small-cover-box">
+               <img src="/images/cover_6.jpg" alt="앨범 커버 이미지">
+            </div></div>
+          <div class="pl12">
+            <h4 class="f15 fw400">#Midnight drive</h4>
+            <span class="c-w50 f12">68 tracks, 2:24:17</span>
+          </div>
+        </div>
+        <button type="button" class="btn-more"></button>
+      </div>
+      <!--//track box-->
+      <!--track box-->
+      <div class="detail-music-box d-flex-between mb8">
+        <div class="d-flex-center">
+          <div class="music-track">  <div class="small-cover-box">
+               <img src="/images/cover_3.jpg" alt="앨범 커버 이미지">
+            </div>
+            <div class="small-cover-box">
+               <img src="/images/cover_4.jpg" alt="앨범 커버 이미지">
+            </div>
+            <div class="small-cover-box">
+               <img src="/images/cover_5.jpg" alt="앨범 커버 이미지">
+            </div>
+            <div class="small-cover-box">
+               <img src="/images/cover_6.jpg" alt="앨범 커버 이미지">
+            </div></div>
+          <div class="pl12">
+            <h4 class="f15 fw400">#Midnight drive</h4>
+            <span class="c-w50 f12">68 tracks, 2:24:17</span>
+          </div>
+        </div>
+        <button type="button" class="btn-more"></button>
+      </div>
+      <!--//track box-->
+      <!--track box-->
+      <div class="detail-music-box d-flex-between mb8">
+        <div class="d-flex-center">
+          <div class="music-track">  <div class="small-cover-box">
+               <img src="/images/cover_3.jpg" alt="앨범 커버 이미지">
+            </div>
+            <div class="small-cover-box">
+               <img src="/images/cover_4.jpg" alt="앨범 커버 이미지">
+            </div>
+            <div class="small-cover-box">
+               <img src="/images/cover_5.jpg" alt="앨범 커버 이미지">
+            </div>
+            <div class="small-cover-box">
+               <img src="/images/cover_6.jpg" alt="앨범 커버 이미지">
+            </div></div>
+          <div class="pl12">
+            <h4 class="f15 fw400">#Midnight drive</h4>
+            <span class="c-w50 f12">68 tracks, 2:24:17</span>
+          </div>
+        </div>
+        <button type="button" class="btn-more"></button>
+      </div>
+      <!--//track box-->
+      <!--track box-->
+      <div class="detail-music-box d-flex-between mb8">
+        <div class="d-flex-center">
+          <div class="music-track">  <div class="small-cover-box">
+               <img src="/images/cover_3.jpg" alt="앨범 커버 이미지">
+            </div>
+            <div class="small-cover-box">
+               <img src="/images/cover_4.jpg" alt="앨범 커버 이미지">
+            </div>
+            <div class="small-cover-box">
+               <img src="/images/cover_5.jpg" alt="앨범 커버 이미지">
+            </div>
+            <div class="small-cover-box">
+               <img src="/images/cover_6.jpg" alt="앨범 커버 이미지">
+            </div></div>
+          <div class="pl12">
+            <h4 class="f15 fw400">#Midnight drive</h4>
+            <span class="c-w50 f12">68 tracks, 2:24:17</span>
+          </div>
+        </div>
+        <button type="button" class="btn-more"></button>
+      </div>
+      <!--//track box-->
+    </div>
+
+    <div id="Hashtag" class="tabcontent">
+      <!--track box-->
+      <div class="detail-music-box d-flex-between mb8">
+        <div class="d-flex-center">
+          <div class="music-track"><img src="/images/tag.svg" alt="hashtag" class="hashtag-img"></div>
+          <div class="pl12">
+            <h4 class="f15 fw400">#oasis</h4>
+            <span class="c-w50 f12">6,113 posts</span>
+          </div>
+        </div>
+        <button type="button" class="btn-more"></button>
+      </div>
+      <!--//track box-->
+      <!--track box-->
+      <div class="detail-music-box d-flex-between mb8">
+        <div class="d-flex-center">
+          <div class="music-track"><img src="/images/tag.svg" alt="hashtag" class="hashtag-img"></div>
+          <div class="pl12">
+            <h4 class="f15 fw400">#oasis</h4>
+            <span class="c-w50 f12">6,113 posts</span>
+          </div>
+        </div>
+        <button type="button" class="btn-more"></button>
+      </div>
+      <!--//track box-->
+      <!--track box-->
+      <div class="detail-music-box d-flex-between mb8">
+        <div class="d-flex-center">
+          <div class="music-track"><img src="/images/tag.svg" alt="hashtag" class="hashtag-img"></div>
+          <div class="pl12">
+            <h4 class="f15 fw400">#oasis</h4>
+            <span class="c-w50 f12">6,113 posts</span>
+          </div>
+        </div>
+        <button type="button" class="btn-more"></button>
+      </div>
+      <!--//track box-->
+      <!--track box-->
+      <div class="detail-music-box d-flex-between mb8">
+        <div class="d-flex-center">
+          <div class="music-track"><img src="/images/tag.svg" alt="hashtag" class="hashtag-img"></div>
+          <div class="pl12">
+            <h4 class="f15 fw400">#oasis</h4>
+            <span class="c-w50 f12">6,113 posts</span>
+          </div>
+        </div>
+        <button type="button" class="btn-more"></button>
+      </div>
+      <!--//track box-->
+    </div>
+  </div>
+
+  <nav class="nav">
+    <ul class="nav-list">
+      <li class="menu-feed" id="feed-menu-btn"></li>
+      <li class="menu-search active" id="search-menu-btn"></li>
+      <li class="menu-notify" id="notification-menu-btn"></li>
+      <li class="menu-myhome" id="myhome-menu-btn"></li>
+    </ul>
+  </nav>
+
+  <script>
+  // 상단 탭 스크립트
+    function openTab(evt, tabName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(tabName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:tm="http://www.thymeleaf.org">
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+   <!-- 상태바 색상 / Chrome, Firefox, Opera -->
+   <meta content='#121212' name='theme-color'>
+   <!-- 상태바 색상 / Windows Phone -->
+   <meta content='#121212' name='msapplication-navbutton-color'>
+   <!-- 상태바 색상 / iOS Safari -->
+   <meta content='#121212' name='apple-mobile-web-app-status-bar-style'>
+   <meta content='yes' name='apple-mobile-web-app-capable'>
+   <link rel="stylesheet" href="/css/common.css">
+   <link rel="stylesheet" href="/css/main.css">
+   <script src="/js/jquery-3.6.1.min.js"></script>
+   <script src="/js/main.js" charset="utf-8"></script>
+   <title>Plasma</title>
+   <script>
+      const page_id = '[[${page_id}]]';
+      $(document).ready(function(){
+         console.log('page_id : ' + page_id);
+
+         $('#feed-menu-btn').on('click', function () {
+            console.log('feed menu');
+            location.href = '/feed/feed';
+         });
+
+         $('#search-menu-btn').on('click', function () {
+            console.log('search menu');
+            location.href = '/search/search';
+         });
+
+         $('#notification-menu-btn').on('click', function () {
+            console.log('notification menu');
+            location.href = '/notification/notification';
+         });
+
+         $('#myhome-menu-btn').on('click', function () {
+            console.log('my home menu');
+            location.href = '/account/account';
+         });
+      });
+   </script>
+</head>
+
+<body>
+   <header class="header">
+      <h2 class="top-title">Feed</h2>
+      <button type="button" class="btn-plus">
+         <img src="/images/plus.svg" alt="뒤로버튼">
+      </button>
+   </header>
+
+   <div class="menu-wrap">
+      <ul class="feed-area">
+         <li>
+            <div class="user-area clear">
+               <div class="user-title">
+                  <div class="user-profile">
+                     <img src="/images/cat.jpg" alt="프로필 사진">
+                  </div>
+                  <div class="user-text">
+                     <p class="user-id">goldjujube</p>
+                     <span class="user-title-tag">#tired</span>
+                  </div>
+               </div>
+               <div class="user-time">4h</div>
+            </div>
+
+            <!--//user-area-->
+            <div class="user-content">
+               <p class="content-text">I'm going to go to work today, and I'm going to
+                  blow up my boss, so please recommend me
+                  some songs that can recharge my energy.</p>
+               <div class="user-content-tag">
+                  <span>#sad</span><span>#midnight</span><span>#drive</span>
+               </div>
+               <div class="user-track-like">
+                  <span class="user-track">41tracks</span>
+                  <span class="user-track-time">1:54:55</span>
+                  <div class="user-like">128</div>
+               </div>
+            </div>
+            <!--//user-content-->
+         </li>
+         <!--//only text content-->
+
+         <li>
+            <div class="user-area clear">
+               <div class="user-title">
+                  <div class="user-profile">
+                     <img src="/images/cat.jpg" alt="프로필 사진">
+                  </div>
+                  <div class="user-text">
+                     <p class="user-id">goldjujube</p>
+                     <span class="user-title-tag">#tired</span>
+                  </div>
+               </div>
+               <div class="user-time">4h</div>
+            </div>
+            <!--//user-area-->
+            <div class="user-content">
+               <p class="content-text">I'm going to go to work today, and I'm going to
+                  blow up my boss, so please recommend me
+                  some songs that can recharge my energy.</p>
+               <div class="user-content-img">
+                  <img src="/images/img_1.jpg" alt="사진">
+               </div>
+               <div class="user-content-tag">
+                  <span>#sad</span><span>#midnight</span><span>#drive</span>
+               </div>
+               <div class="user-track-like">
+                  <span class="user-track">41tracks</span>
+                  <span class="user-track-time">1:54:55</span>
+                  <div class="user-like">128</div>
+               </div>
+            </div>
+            <!--//user-content-->
+         </li>
+         <!--// text+img content-->
+
+         <li>
+            <div class="user-area clear">
+               <div class="user-title">
+                  <div class="user-profile">
+                     <img src="/images/cat.jpg" alt="프로필 사진">
+                  </div>
+                  <div class="user-text">
+                     <p class="user-id">goldjujube</p>
+                     <span class="user-title-tag">#tired</span>
+                  </div>
+               </div>
+               <div class="user-time">4h</div>
+            </div>
+            <!--//user-area-->
+            <div class="user-content">
+               <p class="content-text">
+                  I'm going to go to work today, and I'm going to
+                  blow up my boss, so please recommend me
+                  some songs that can recharge my energy.
+               </p>
+               <div class="user-content-box">
+                  <div class="music-cover">
+                     <img src="/images/cover_1.png" alt="음악 앨범 이미지">
+                  </div>
+                  <div class="music-title">
+                     <h4>Midnight drive</h4>
+                     <div class="music-content-tag">
+                        <span>#sad</span><span>#midnight</span><span>#drive</span>
+                     </div>
+                  </div>
+               </div>
+               <div class="user-track-like">
+                  <span class="user-track">41tracks</span>
+                  <span class="user-track-time">1:54:55</span>
+                  <div class="user-like">128</div>
+               </div>
+            </div>
+            <!--//user-content-->
+         </li>
+         <!--//text+music content-->
+
+         <li>
+            <div class="user-area clear">
+               <div class="user-title">
+                  <div class="user-profile">
+                     <img src="/images/cat.jpg" alt="프로필 사진">
+                  </div>
+                  <div class="user-text">
+                     <p class="user-id">goldjujube</p>
+                     <span class="user-title-tag">#tired</span>
+                  </div>
+               </div>
+               <div class="user-time">4h</div>
+            </div>
+            <!--//user-area-->
+            <div class="user-content">
+               <div class="user-content-box">
+                  <div class="music-cover">
+                     <img src="/images/cover_1.png" alt="음악 앨범 이미지">
+                  </div>
+                  <div class="music-title">
+                     <h4>Midnight drive</h4>
+                     <div class="music-content-tag">
+                        <span>#sad</span><span>#midnight</span><span>#drive</span>
+                     </div>
+                  </div>
+               </div>
+               <div class="user-track-like">
+                  <span class="user-track">41tracks</span>
+                  <span class="user-track-time">1:54:55</span>
+                  <div class="user-like">128</div>
+               </div>
+            </div>
+            <!--//user-content-->
+         </li>
+         <!--//only music content-->
+
+         <li>
+            <div class="user-area clear">
+               <div class="user-title">
+                  <div class="user-profile">
+                     <img src="/images/cat.jpg" alt="프로필 사진">
+                  </div>
+                  <div class="user-text">
+                     <p class="user-id">goldjujube</p>
+                     <span class="user-title-tag">#tired</span>
+                  </div>
+               </div>
+               <div class="user-time">4h</div>
+            </div>
+            <!--//user-area-->
+            <div class="user-content">
+               <p class="content-text">I'm going to go to work today, and I'm going to
+                  blow up my boss, so please recommend me
+                  some songs that can recharge my energy.</p>
+               <div class="user-content-tag">
+                  <span>#sad</span><span>#midnight</span><span>#drive</span>
+               </div>
+               <div class="user-track-like">
+                  <span class="user-track">41tracks</span>
+                  <span class="user-track-time">1:54:55</span>
+                  <div class="user-like active">128</div>
+               </div>
+            </div>
+            <!--//user-content-->
+         </li>
+         <!--//only text+like content-->
+
+      </ul><!-- //class="feed-area"-->
+   </div>
+
+   <nav class="nav">
+      <ul class="nav-list">
+         <li class="menu-feed active" id="feed-menu-btn"></li>
+         <li class="menu-search" id="search-menu-btn"></li>
+         <li class="menu-notify" id="notification-menu-btn"></li>
+         <li class="menu-myhome" id="myhome-menu-btn"></li>
+      </ul>
+   </nav>
+
+   <section class="feed-menu-area">
+     <ul class="feed-menu">
+       <li class="feed-post" id="post-btn">Post</li>
+       <li class="feed-playlist" id="pl-btn">Playlist</li>
+     </ul>
+   </section>
+</body>
+
+</html>

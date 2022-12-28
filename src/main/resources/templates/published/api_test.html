@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:tm="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <title>[plasma] publishing list</title>
+</head>
+<!--
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+-->
+<script src="js/jquery-3.6.1.min.js"></script>
+<style media="screen">
+  * {
+    padding: 0;
+    margin: 0;
+  }
+
+  .content-btn {
+    margin-left: 20px;
+  }
+
+  table {
+    width: 800px;
+    text-align: center;
+  }
+
+  table thead {
+    text-align: center;
+    background: #ddd;
+  }
+
+  table td {
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+  }
+
+  table td,
+  table th {
+    padding: 5px 10px;
+  }
+</style>
+<script>
+  const page_id = '[[${page_id}]]';
+  $(document).ready(function(){
+    console.log('page_id : ' + page_id);
+  });
+</script>
+
+<body>
+  <table style="border:1px solid gray">
+    <tr style="border">
+      <th>순번</th>
+      <th>내용</th>
+      <th>실행</th>
+    </tr>
+    <tr>
+      <th>1</th>
+      <th>로그인</th>
+      <th><button id="login-btn">Login</button></th>
+    </tr>
+  </table>
+
+  <div id="result" style="border:1px solid gray">
+asdfasdfasdf
+  </div>
+
+</body>
+
+</html>

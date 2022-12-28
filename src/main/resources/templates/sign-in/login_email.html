@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:tm="http://www.thymeleaf.org">
+
+<head>
+   <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+   <!-- 상태바 색상 / Chrome, Firefox, Opera -->
+   <meta content='#121212' name='theme-color'>
+   <!-- 상태바 색상 / Windows Phone -->
+   <meta content='#121212' name='msapplication-navbutton-color'>
+   <!-- 상태바 색상 / iOS Safari -->
+   <meta content='#121212' name='apple-mobile-web-app-status-bar-style'>
+   <meta content='yes' name='apple-mobile-web-app-capable'>
+   <link rel="stylesheet" href="/css/common.css">
+   <link rel="stylesheet" href="/css/main.css">
+   <script src="/js/jquery-3.6.1.min.js"></script>
+   <script src="/js/main.js" charset="utf-8"></script>
+   <title>Plasma</title>
+    <script>
+        const page_id = '[[${page_id}]]';
+        $(document).ready(function(){
+            console.log('page_id : ' + page_id);
+            $('#prev-btn').on('click', function (){
+                console.log('go prev page');
+                location.href = '/sign-in/signin';
+            });
+
+            $('#email').on('change', function (){
+                if ($(this).val() == '') {
+                    $('#next-btn').prop('disabled', true);
+                } else {
+                    $('#next-btn').prop('disabled', false);
+                }
+            });
+
+            $('#find-pw-btn').on('click', function (){
+                console.log('find password');
+                alertPopupOpen();
+            });
+
+            $('#next-btn').on('click', function (){
+                console.log('go password');
+                location.href = '/sign-in/login_password';
+            });
+        });
+    </script>
+</head>
+
+<body>
+ <header class="header">
+<button type="button" class="btn-prev" id="prev-btn">
+   <img src="/images/prev.svg" alt="뒤로버튼">
+</button>
+   <h2 class="top-title">Log in</h2>
+ </header>
+  <form class="sign-wrap">
+     <label class="sign">Enter your email</label>
+     <input type="email" placeholder="Email address" id="email">
+      <!--
+     <p class="small">You’ll need to confirm this email later.</p>
+     -->
+  </form>
+  <div class="btn-bottom-fix">
+    <button type="button" class="btn-forgot-pw" id="find-pw-btn"><ins>Forgot your password?</ins></button>
+  <button type="button"  class="btn-main" disabled id="next-btn">NEXT</button>
+  </div>
+
+ <!-- alert popup ------------------------------->
+ <div class="alert-pop">
+     <div class="alert-pop-bg"></div>
+     <div class="alert-content-area">
+         <div class="alert-content">
+             <img src="/images/email.svg" alt="메일 이미지" class="email-icon">
+             <p class="alert-text">
+                 We have sent you a link to
+                 reset your password in
+                 your email.
+             </p>
+             <button type="button" class="alert-close" onclick="alertPopupClose()">Close</button>
+         </div>
+     </div>
+ </div>
+ <!-- // alert popup ----------------------------->
+</body>
+
+</html>

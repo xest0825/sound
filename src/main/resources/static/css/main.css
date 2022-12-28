@@ -269,8 +269,7 @@ textarea.edit-text-box {width:100%; height:42px; color:#fff; }
 .edit-music-box-area {position: relative;}
 .edit-music-box-area .detail-music-box {transition: 0.2s;}
 .edit-music-box-area.remove .detail-music-box {margin-left:-54px; margin-right:54px; transition: 0.2s;}
-.btn-bin {display: block; width:60px; height:60px; position:absolute; right:-100px; top:0px; color:transparent;  text-indent: -99999;
-background:#F45656 url(../images/bin.svg) no-repeat center/24px; border-radius:8px 0px 0px 8px; cursor: :pointer; transition: 0.2s; }
+.btn-bin {display: block; width:60px; height:60px; position:absolute; right:-100px; top:0px; color:transparent;  text-indent: -99999; background:#F45656 url(../images/bin.svg) no-repeat center/24px; border-radius:8px 0px 0px 8px; cursor: :pointer; transition: 0.2s; }
 .edit-music-box-area.remove .btn-bin { right:-14px; transition: 0.4s;}
 
 .hashtag-box {line-height: 32px;}

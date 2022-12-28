@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ko" dir="ltr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:tm="http://www.thymeleaf.org">
 
 <head>
   <meta charset="utf-8">
@@ -13,9 +15,15 @@
   <meta content='yes' name='apple-mobile-web-app-capable'>
   <link rel="stylesheet" href="css/common.css">
   <link rel="stylesheet" href="css/main.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="js/jquery-3.6.1.min.js"></script>
   <script src="js/main.js" charset="utf-8"></script>
   <title>Plasma</title>
+  <script>
+    const page_id = '[[${page_id}]]';
+    $(document).ready(function(){
+      console.log('page_id : ' + page_id);
+    });
+  </script>
 </head>
 
 <body>

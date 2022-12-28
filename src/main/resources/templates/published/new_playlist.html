@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:tm="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+  <!-- 상태바 색상 / Chrome, Firefox, Opera -->
+  <meta content='#191931' name='theme-color'>
+  <!-- 상태바 색상 / Windows Phone -->
+  <meta content='#191931' name='msapplication-navbutton-color'>
+  <!-- 상태바 색상 / iOS Safari -->
+  <meta content='#191931' name='apple-mobile-web-app-status-bar-style'>
+  <meta content='yes' name='apple-mobile-web-app-capable'>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/main.css">
+  <script src="js/jquery-3.6.1.min.js"></script>
+  <script src="js/main.js" charset="utf-8"></script>
+  <title>Plasma</title>
+  <script>
+    const page_id = '[[${page_id}]]';
+    $(document).ready(function(){
+      console.log('page_id : ' + page_id);
+    });
+  </script>
+</head>
+
+<body>
+  <!--class="popup"에서 style="bottom:0% 삭제"-->
+  <!--- popup ---------------------------------------->
+  <section class="popup" style="bottom:0%;">
+    <div class="pop-top">
+        <button type="button" class="btn-close-pop"><img src="images/close.svg" alt="닫기버튼"></button>
+      <p class="pop-top-title">New playlist</p>
+      <button type="button" class="btn-check">
+        <img src="images/check.svg" alt="확인">
+      </button>
+    </div>
+    <div class="pop-content-full" style="height:calc(100vh - 70px) !important">
+      <div class="pop-wrap">
+        <div class=" pt10 pb45">
+          <div class="detail-cover-box">
+             <div class="edit-cover-box">
+               <img src="images/camera.svg" alt="new playlist cover image" class="new-camera">
+             </div>
+          </div>
+        </div>
+
+      <form>
+        <div class="playlist-name-area">
+          <input type="text" placeholder="Playlist Name" class="playlist-name">
+        </div>
+
+        <div class="playlist-text-area">
+            <input type="text" placeholder="Description" class="playlist-text">
+            <span class="text-limit">0/40</span>
+        </div>
+
+      </form>
+
+
+
+
+
+      </div><!--//pop-wrap-->
+    </div>
+  </section>
+  <!--- //popup ---------------------------------------->
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:tm="http://www.thymeleaf.org">
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+   <!-- 상태바 색상 / Chrome, Firefox, Opera -->
+   <meta content='#121212' name='theme-color'>
+   <!-- 상태바 색상 / Windows Phone -->
+   <meta content='#121212' name='msapplication-navbutton-color'>
+   <!-- 상태바 색상 / iOS Safari -->
+   <meta content='#121212' name='apple-mobile-web-app-status-bar-style'>
+   <meta content='yes' name='apple-mobile-web-app-capable'>
+   <link rel="stylesheet" href="css/common.css">
+   <link rel="stylesheet" href="css/main.css">
+   <script src="js/jquery-3.6.1.min.js"></script>
+   <script src="js/main.js" charset="utf-8"></script>
+   <title>Plasma</title>
+   <script>
+      const page_id = '[[${page_id}]]';
+      $(document).ready(function(){
+         console.log('page_id : ' + page_id);
+      });
+   </script>
+</head>
+
+<body>
+   <header class="header">
+      <button type="button" class="btn-prev">
+         <img src="images/prev.svg" alt="뒤로버튼">
+      </button>
+      <h2 class="top-title">Create Account</h2>
+   </header>
+   <div class="position-re">
+      <form class="sign-wrap">
+         <label class="sign">Choose 3 or more hashtag you like.</label>
+         <div class="position-re">
+            <input type="search" placeholder="Search">
+            <button type="button" class="btn-search"></button>
+         </div>
+      </form>
+   </div>
+
+   <div class="like-area">
+      <button type="button" class="like-box">#sad</button>
+      <button type="button" class="like-box">#nervous</button>
+      <button type="button" class="like-box">#midnight</button>
+      <button type="button" class="like-box">#Gloomy</button>
+      <button type="button" class="like-box">#after</button>
+      <button type="button" class="like-box">#afternoon</button>
+      <button type="button" class="like-box">#sad</button>
+      <button type="button" class="like-box">#nervous</button>
+      <button type="button" class="like-box">#midnight</button>
+      <button type="button" class="like-box">#Gloomy</button>
+      <button type="button" class="like-box">#after</button>
+      <button type="button" class="like-box">#afternoon</button>
+      <button type="button" class="like-box">#midnight</button>
+      <button type="button" class="like-box">#Gloomy</button>
+      <button type="button" class="like-box">#after</button>
+      <button type="button" class="like-box">#sad</button>
+      <button type="button" class="like-box">#nervous</button>
+      <button type="button" class="like-box">#Gloomy</button>
+      <button type="button" class="like-box">#after</button>
+      <button type="button" class="like-box">#afternoon</button>
+      <button type="button" class="like-box">#midnight</button>
+      <button type="button" class="like-box">#sad</button>
+      <button type="button" class="like-box">#nervous</button>
+      <button type="button" class="like-box">#midnight</button>
+      <button type="button" class="like-box">#Gloomy</button>
+      <button type="button" class="like-box">#after</button>
+      <button type="button" class="like-box">#afternoon</button>
+      <button type="button" class="like-box">#sad</button>
+      <button type="button" class="like-box">#nervous</button>
+      <button type="button" class="like-box">#midnight</button>
+      <button type="button" class="like-box">#Gloomy</button>
+      <button type="button" class="like-box">#after</button>
+   </div>
+   <div class="pop-btn-area">
+      <div class="pop-opacity"></div>
+      <div class="pop-wrap">
+         <button type="button" class="btn-main">NEXT</button>
+         <button type="button" class="btn-text">SKIP</button>
+      </div>
+   </div>
+
+</body>
+
+</html>
