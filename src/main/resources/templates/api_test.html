@@ -30,6 +30,10 @@
     background: #ddd;
   }
 
+  table thead,
+  table tr {
+    border-bottom: 1px solid #ddd;
+  }
   table td {
     border-bottom: 1px solid #ddd;
     border-right: 1px solid #ddd;
@@ -48,12 +52,12 @@
 </script>
 
 <body>
-  <table style="border:1px solid gray">
-    <tr style="border">
+  <table>
+    <thead>
       <th>순번</th>
       <th>내용</th>
       <th>실행</th>
-    </tr>
+    </thead>
     <tr>
       <th>1</th>
       <th>로그인</th>
@@ -61,8 +65,7 @@
     </tr>
   </table>
 
-  <div id="result" style="border:1px solid gray">
-asdfasdfasdf
+  <div id="result" style="border:1px solid gray;margin:5px;">
   </div>
 
 </body>
