@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:tm="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <title>[Plasma Sound] Admin main</title>
+  <link rel="stylesheet" href="/kendoui/styles/kendo.bootstrap-v4.min.css">
+  <link rel="stylesheet" href="/kendoui/styles/kendo.bootstrap-v4.min.css.map">
+  <style>
+
+    footer {
+      position:fixed;
+      bottom:0px;
+      padding: 2px auto;
+      text-align: center;
+      display:inline-block
+    }
+  </style>
+  <script src="/js/jquery-3.6.1.min.js"></script>
+  <script src="/kendoui/js/kendo.all.min.js"></script>
+  <script>
+    const page_id = '[[${page_id}]]';
+    $(document).ready(function(){
+      console.log('page_id : ' + page_id);
+    });
+  </script>
+</head>
+<body>
+<header>
+</header>
+<section>
+
+</section>
+<footer>
+  <div style="margin:auto;display:inline-block">PlasmaSound.io@2023 All Rights Reserved.</div>
+</footer>
+</body>
+</html>
