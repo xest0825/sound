@@ -18,6 +18,14 @@ public class PageController {
         return mv;
     }
 
+    @GetMapping("/test")
+    public ModelAndView goTesst() {
+        log.info("/");
+        ModelAndView mv = new ModelAndView("api_test");
+        mv.addObject("page_id", "api_test");
+        return mv;
+    }
+
     /**
      * 퍼블리싱 페이지로 접근
      * @param page
