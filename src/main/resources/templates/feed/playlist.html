@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:tm="http://www.thymeleaf.org">
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+   <!-- 상태바 색상 / Chrome, Firefox, Opera -->
+   <meta content='#121212' name='theme-color'>
+   <!-- 상태바 색상 / Windows Phone -->
+   <meta content='#121212' name='msapplication-navbutton-color'>
+   <!-- 상태바 색상 / iOS Safari -->
+   <meta content='#121212' name='apple-mobile-web-app-status-bar-style'>
+   <meta content='yes' name='apple-mobile-web-app-capable'>
+   <link rel="stylesheet" href="/css/common.css">
+   <link rel="stylesheet" href="/css/main.css">
+   <script src="/js/jquery-3.6.1.min.js"></script>
+   <script src="/js/main.js" charset="utf-8"></script>
+   <title>Plasma</title>
+   <script>
+      const page_id = '[[${page_id}]]';
+      $(document).ready(function(){
+         console.log('page_id : ' + page_id);
+         $('#close-btn').on('click', function(){
+            history.go(-1);
+         });
+      });
+   </script>
+</head>
+<!-- 스크롤할때 header에 배경 없앨 경우 class="header-color" 삭제하세요 -->
+
+<body>
+   <header class="header">
+      <h2 class="top-title">Playlist</h2>
+      <button type="button" class="btn-close-pop" id="close-btn"><img src="/images/close.svg" alt="닫기버튼"></button>
+   </header>
+
+   <div class="menu-top">
+      <section class="wrap-14">
+        <!--track box-->
+        <div class="detail-music-box d-flex-between mb8">
+           <div class="d-flex-center">
+              <div class="music-track">
+                 <div class="small-cover-box">
+                    <img src="/images/cover_3.jpg" alt="앨범 커버 이미지">
+                 </div>
+                 <div class="small-cover-box">
+                    <img src="/images/cover_4.jpg" alt="앨범 커버 이미지">
+                 </div>
+                 <div class="small-cover-box">
+                    <img src="/images/cover_5.jpg" alt="앨범 커버 이미지">
+                 </div>
+                 <div class="small-cover-box">
+                    <img src="/images/cover_6.jpg" alt="앨범 커버 이미지">
+                 </div>
+              </div>
+              <div class="pl12">
+                 <h4 class="f15 fw400">#Midnight drive</h4>
+                 <span class="c-blue f12">#sad #midnight #drive</span>
+              </div>
+           </div>
+           <button type="button" class="btn-more"></button>
+        </div>
+        <!--//track box-->
+        <div class="detail-music-box d-flex-between mb8">
+           <div class="d-flex-center">
+              <div class="music-track">
+                 <div class="small-cover-box">
+                    <img src="/images/cover_3.jpg" alt="앨범 커버 이미지">
+                 </div>
+                 <div class="small-cover-box">
+                    <img src="/images/cover_4.jpg" alt="앨범 커버 이미지">
+                 </div>
+                 <div class="small-cover-box">
+                    <img src="/images/cover_5.jpg" alt="앨범 커버 이미지">
+                 </div>
+                 <div class="small-cover-box">
+                    <img src="/images/cover_6.jpg" alt="앨범 커버 이미지">
+                 </div>
+              </div>
+              <div class="pl12">
+                 <h4 class="f15 fw400">#Midnight drive</h4>
+                 <span class="c-blue f12">#sad #midnight #drive</span>
+              </div>
+           </div>
+           <button type="button" class="btn-more"></button>
+        </div>
+        <!--//track box-->
+        <div class="detail-music-box d-flex-between mb8">
+           <div class="d-flex-center">
+              <div class="music-track">
+                 <div class="small-cover-box">
+                    <img src="/images/cover_3.jpg" alt="앨범 커버 이미지">
+                 </div>
+                 <div class="small-cover-box">
+                    <img src="/images/cover_4.jpg" alt="앨범 커버 이미지">
+                 </div>
+                 <div class="small-cover-box">
+                    <img src="/images/cover_5.jpg" alt="앨범 커버 이미지">
+                 </div>
+                 <div class="small-cover-box">
+                    <img src="/images/cover_6.jpg" alt="앨범 커버 이미지">
+                 </div>
+              </div>
+              <div class="pl12">
+                 <h4 class="f15 fw400">#Midnight drive</h4>
+                 <span class="c-blue f12">#sad #midnight #drive</span>
+              </div>
+           </div>
+           <button type="button" class="btn-more"></button>
+        </div>
+        <!--//track box-->
+        <div class="detail-music-box d-flex-between mb8">
+           <div class="d-flex-center">
+              <div class="music-track">
+                 <div class="small-cover-box">
+                    <img src="/images/cover_3.jpg" alt="앨범 커버 이미지">
+                 </div>
+                 <div class="small-cover-box">
+                    <img src="/images/cover_4.jpg" alt="앨범 커버 이미지">
+                 </div>
+                 <div class="small-cover-box">
+                    <img src="/images/cover_5.jpg" alt="앨범 커버 이미지">
+                 </div>
+                 <div class="small-cover-box">
+                    <img src="/images/cover_6.jpg" alt="앨범 커버 이미지">
+                 </div>
+              </div>
+              <div class="pl12">
+                 <h4 class="f15 fw400">#Midnight drive</h4>
+                 <span class="c-blue f12">#sad #midnight #drive</span>
+              </div>
+           </div>
+           <button type="button" class="btn-more"></button>
+        </div>
+        <!--//track box-->
+
+      </section>
+
+
+      <!-- loading -->
+        <!--2초뒤 사라짐 / js파일에서 시간 조절 가능-->
+      <div id="loading">
+      <div class="splash-area" style="z-index:99999">
+        <div class="wrap_box" style="margin-top:-90px">
+          <div class="pulse-circle">
+            <i class="fa fa-phone"></i>
+          </div>
+        </div>
+        <div class="logo-ani-area">
+          <img src="/images/logo_w.png" alt="Plasma logo" class="logo-ani">
+        </div>
+      </div>
+      <div class="pop-bg" style="display:block"></div>
+        </div>
+        <!-- //loading -->
+   </div>
+
+</body>
+
+</html>

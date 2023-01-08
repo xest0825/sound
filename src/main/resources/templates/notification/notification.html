@@ -42,6 +42,10 @@
             console.log('my home menu');
             location.href = '/account/account';
          });
+
+         $('#prev-btn').on('click', function(){
+            location.href = '/feed/feed';
+         });
       });
    </script>
 </head>
@@ -49,8 +53,8 @@
 <body>
    <header class="header">
       <h2 class="top-title">Notification</h2>
-      <button type="button" class="btn-prev">
-         <img src="/images/prev.svg" alt="뒤로버 튼">
+      <button type="button" class="btn-prev" id="prev-btn">
+         <img src="/images/prev.svg" alt="뒤로버튼">
       </button>
 
    </header>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:tm="http://www.thymeleaf.org">
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+   <!-- 상태바 색상 / Chrome, Firefox, Opera -->
+   <meta content='#121212' name='theme-color'>
+   <!-- 상태바 색상 / Windows Phone -->
+   <meta content='#121212' name='msapplication-navbutton-color'>
+   <!-- 상태바 색상 / iOS Safari -->
+   <meta content='#121212' name='apple-mobile-web-app-status-bar-style'>
+   <meta content='yes' name='apple-mobile-web-app-capable'>
+   <link rel="stylesheet" href="/css/common.css">
+   <link rel="stylesheet" href="/css/main.css">
+   <script src="/js/jquery-3.6.1.min.js"></script>
+   <script src="/js/main.js" charset="utf-8"></script>
+   <title>Plasma</title>
+    <script>
+        const page_id = '[[${page_id}]]';
+        $(document).ready(function(){
+            console.log('page_id : ' + page_id);
+            $('#prev-btn').on('click', function(){
+               location.href = '/feed/feed';
+            });
+        });
+    </script>
+</head>
+
+<body>
+   <header class="header">
+      <h2 class="top-title">Detail</h2>
+      <button type="button" class="btn-prev" id="prev-btn">
+         <img src="/images/prev.svg" alt="뒤로버튼">
+      </button>
+      <button type="button" class="btn-menu" onclick="popupOpen2()">
+         <img src="/images/menu.svg" alt="추가버튼" >
+      </button>
+   </header>
+
+   <div class="menu-wrap">
+      <ul class="feed-area">
+         <li>
+            <div class="user-area clear">
+               <div class="user-title">
+                  <div class="user-profile">
+                     <img src="/images/cat.jpg" alt="프로필 사진">
+                  </div>
+                  <div class="user-text">
+                     <p class="user-id">goldjujube</p>
+                     <span class="user-title-tag">#tired</span>
+                  </div>
+               </div>
+               <div class="user-time">4h</div>
+            </div>
+            <!--//user-area-->
+            <div class="detail-content">
+               <p class="detail-text">I'm going to go to work today, and I'm going to
+                  blow up my boss, so please recommend me
+                  some songs that can recharge my energy.</p>
+
+               <div class="user-content-tag position-re">
+                  <span>#sad</span><span>#midnight</span><span>#drive</span>
+                  <div class="user-like">128</div>
+               </div>
+            </div>
+            <!--//user-content-->
+         </li>
+         <!--//content-->
+      </ul><!-- //class="feed-area"-->
+      <section class="wrap-14">
+         <div class="d-flex-between">
+            <div>
+               <span class="user-track">41tracks</span>
+               <span class="user-track-time">1:54:55</span>
+            </div>
+            <div class="d-flex-center">
+               <button type="button" class="btn-play" onclick="alertPopupOpen()"></button>
+               <button type="button" class="btn-download"></button>
+               <button type="button" class="btn-view off"></button>
+            </div>
+         </div>
+
+         <dl>
+            <dt class="pt15">
+
+               <div class="detail-music-box d-flex-between mb8">
+                  <div class="d-flex-center">
+                     <div class="music-track"><img src="/images/cover_1.jpg" alt="앨범 표지 이미지"></div>
+                     <div class="pl12">
+                        <h4 class="f15 fw400">Fire in the hole</h4>
+                        <span class="c-w50 f12">Flames</span>
+                     </div>
+                  </div>
+                  <button type="button" class="btn-more" onclick="popupOpen1()"></button>
+               </div>
+               <!--//track box-->
+
+               <div class="detail-music-box d-flex-between mb8">
+                  <div class="d-flex-center">
+                     <div class="music-track"><img src="/images/cover_1.jpg" alt="앨범 표지 이미지"></div>
+                     <div class="pl12">
+                        <h4 class="f15 fw400">Fire in the hole</h4>
+                        <span class="c-w50 f12">Flames</span>
+                     </div>
+                  </div>
+                  <button type="button" class="btn-more" onclick="popupOpen1()"></button>
+               </div>
+           <!--//track box-->
+               <div class="detail-music-box d-flex-between mb8">
+                  <div class="d-flex-center">
+                     <div class="music-track"><img src="/images/cover_1.jpg" alt="앨범 표지 이미지"></div>
+                     <div class="pl12">
+                        <h4 class="f15 fw400">Fire in the hole</h4>
+                        <span class="c-w50 f12">Flames</span>
+                     </div>
+                  </div>
+                  <button type="button" class="btn-more"></button>
+               </div>
+             <!--//track box-->
+               <div class="detail-music-box d-flex-between mb8">
+                  <div class="d-flex-center">
+                     <div class="music-track"><img src="/images/cover_1.jpg" alt="앨범 표지 이미지"></div>
+                     <div class="pl12">
+                        <h4 class="f15 fw400">Fire in the hole</h4>
+                        <span class="c-w50 f12">Flames</span>
+                     </div>
+                  </div>
+                  <button type="button" class="btn-more"></button>
+               </div>
+             <!--//track box-->
+               <div class="detail-music-box d-flex-between mb8">
+                  <div class="d-flex-center">
+                     <div class="music-track"><img src="/images/cover_1.jpg" alt="앨범 표지 이미지"></div>
+                     <div class="pl12">
+                        <h4 class="f15 fw400">Fire in the hole</h4>
+                        <span class="c-w50 f12">Flames</span>
+                     </div>
+                  </div>
+                  <button type="button" class="btn-more"></button>
+               </div>
+             <!--//track box-->
+               <div class="detail-music-box d-flex-between mb8">
+                  <div class="d-flex-center">
+                     <div class="music-track"><img src="/images/cover_1.jpg" alt="앨범 표지 이미지"></div>
+                     <div class="pl12">
+                        <h4 class="f15 fw400">Fire in the hole</h4>
+                        <span class="c-w50 f12">Flames</span>
+                     </div>
+                  </div>
+                  <button type="button" class="btn-more"></button>
+               </div>
+           <!--//track box-->
+            </dt>
+         </dl>
+      </section>
+   </div>
+
+<!-- reply input box-->
+   <div class="reply-area">
+      <div class="d-flex-between d-flex-center">
+         <div class="reply-user-profile">
+            <img src="/images/cat.jpg" alt="프로필 사진">
+         </div>
+         <input type="text" placeholder="Recommend a your song" class="input-reply">
+      </div>
+   </div>
+<!--//reply input box-->
+
+<!--result ------------------------------->
+  <div class="result">
+    <p>Added to my collection ‘midnight drive’</p>
+    <div class="position-re">
+      <button type="button" class="btn-message-close"></button>
+    </div>
+  </div>
+
+<!--result  ------------------------------->
+
+<!-- alert popup ------------------------------->
+<div class="alert-pop">
+  <div class="alert-pop-bg"></div>
+  <div class="alert-content-area">
+    <div class="alert-content">
+      <img src="/images/spotify_logo_c.svg" alt="메일 이미지" >
+      <p class="alert-text">
+        Should I launch the spotify app?
+      </p>
+      <div class="d-flex-between">
+        <button type="button" class="alert-close" onclick="alertPopupClose()">Close</button>
+        <button type="button" class="alert-close c-blue">Open</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- // alert popup ----------------------------->
+
+<!--- post  more popup ---------------------------------------->
+<section class="popup" id="popup-2">
+   <div class="pop-top">
+     <div class="user-area clear">
+        <div class="user-title">
+           <div class="user-profile">
+              <img src="/images/cat.jpg" alt="프로필 사진">
+           </div>
+           <div class="user-text">
+              <p class="f15">goldjujube</p>
+              <span class="user-title-tag">#tired</span>
+           </div>
+        </div>
+     </div>
+     <!--//user-area-->
+     <div class="detail-content">
+        <p class="detail-text">I'm going to go to work today, and I'm going to
+           blow up my boss, so please recommend me
+           some songs that can recharge my energy.</p>
+        <div class="user-content-tag">
+           <span>#sad</span><span>#midnight</span><span>#drive</span>
+        </div>
+        <div class="pt10">
+           <span class="user-track">41tracks</span>
+           <span class="user-track-time">1:54:55</span>
+        </div>
+     </div>
+     <!--//user-content-->
+      <button type="button" class="btn-close">
+         <img src="/images/close.svg" alt="닫기">
+      </button>
+   </div>
+   <div class="pop-content">
+      <div>
+        <ul class="more-list">
+          <li class="more-play">Play</li>
+          <li class="more-like">Like</li>
+          <li class="more-playlist">Add to playlist</li>
+          <li class="more-tracklist">Add to tracklist</li>
+          <li class="more-share">Share</li>
+          <!--post-->
+          <li class="more-edit-playlist">Edit post</li>
+          <li class="more-delete">Delete playlist</li>
+          <!--//post-->
+        </ul>
+      </div>
+   </div>
+</section>
+<div class="pop-bg" id="popup-bg-2"></div>
+<!--- //popup ---------------------------------------->
+
+<!--- track more popup ---------------------------------------->
+<section class="popup" id="popup-1">
+   <div class="pop-top">
+     <!--//track box-->
+          <div class="d-flex-center t-left">
+             <div class="music-track"><img src="/images/cover_1.jpg" alt="앨범 표지 이미지"></div>
+             <div class="pl12">
+                <h4 class="f15 fw400">Fire in the hole</h4>
+                <span class="c-w50 f12">Flames</span>
+             </div>
+          </div>
+
+   <!--//track box-->
+  </div>
+      <button type="button" class="btn-close">
+         <img src="/images/close.svg" alt="닫기">
+      </button>
+   </div>
+   <div class="pop-content">
+      <div>
+        <ul class="more-list">
+          <li class="more-play">Play</li>
+          <li class="more-like">Like</li>
+          <li class="more-playlist">Add to playlist</li>
+          <li class="more-tracklist">Add to tracklist</li>
+          <li class="more-share">Share</li>
+        </ul>
+      </div>
+   </div>
+</section>
+<div class="pop-bg" id="popup-bg-1">
+<!--- //popup ---------------------------------------->
+</body>
+
+</html>

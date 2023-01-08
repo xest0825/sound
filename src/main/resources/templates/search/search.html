@@ -42,6 +42,11 @@
         console.log('my home menu');
         location.href = '/account/account';
       });
+
+      $('#cancel-btn').on('click', function(){
+        console.log('cancel');
+        $('#search_word').val('');
+      });
     });
   </script>
 </head>
@@ -49,11 +54,11 @@
 <body>
   <div class="search-top-area">
     <div class="search-area">
-      <input type="search" placeholder="Search">
+      <input type="search" placeholder="Search" id="search_word">
       <button type="button" class="btn-search"></button>
     </div>
     <div class="cancel-area">
-      <button type="button" class="btn-cancel">Cancel</button>
+      <button type="button" class="btn-cancel" id="cancel-btn">Cancel</button>
     </div>
   </div>
 

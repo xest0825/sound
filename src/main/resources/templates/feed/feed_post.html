@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:tm="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+  <!-- 상태바 색상 / Chrome, Firefox, Opera -->
+  <meta content='#121212' name='theme-color'>
+  <!-- 상태바 색상 / Windows Phone -->
+  <meta content='#121212' name='msapplication-navbutton-color'>
+  <!-- 상태바 색상 / iOS Safari -->
+  <meta content='#121212' name='apple-mobile-web-app-status-bar-style'>
+  <meta content='yes' name='apple-mobile-web-app-capable'>
+  <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <script src="/js/jquery-3.6.1.min.js"></script>
+  <script src="/js/main.js" charset="utf-8"></script>
+  <title>Plasma</title>
+  <script>
+    const page_id = '[[${page_id}]]';
+    $(document).ready(function(){
+      console.log('page_id : ' + page_id);
+      $('#close-btn').on('click', function(){
+        history.go(-1);
+      });
+      $('#done-btn').on('click', function(){
+        history.go(-1);
+      });
+
+    });
+  </script>
+</head>
+
+<body>
+  <header class="header">
+    <h2 class="top-title">Feed</h2>
+    <button type="button" class="btn-close-pop" id="close-btn"><img src="/images/close.svg" alt="닫기버튼"></button>
+    <button type="button" class="btn-check" id="done-btn"><img src="/images/check.svg" alt="확인"></button>
+  </header>
+
+  <div class="menu-top">
+    <section class="wrap-14">
+      <div class="post-box-area">
+        <div contentEditable="true" class="post-box" placeholder="Talk about the music you want">
+          <p class="pb15">I'm going to go to work today, and I'm going to blow up my boss, so</p>
+          <!--이미지 영역-->
+          <div class="post-img-box pb10">
+            <img src="/images/img_2.jpg" alt="" style="width:100%">
+          </div>
+          <!--//이미지 영역-->
+          <!--뮤직박스 영역-->
+          <div class="detail-music-box d-flex-between" contentEditable="false">
+            <div class="d-flex-center">
+              <div class="music-track">
+                <div class="small-cover-box">
+                  <img src="/images/cover_3.jpg" alt="앨범 커버 이미지">
+                </div>
+                <div class="small-cover-box">
+                  <img src="/images/cover_4.jpg" alt="앨범 커버 이미지">
+                </div>
+                <div class="small-cover-box">
+                  <img src="/images/cover_5.jpg" alt="앨범 커버 이미지">
+                </div>
+                <div class="small-cover-box">
+                  <img src="/images/cover_6.jpg" alt="앨범 커버 이미지">
+                </div>
+              </div>
+              <div class="pl12">
+                <h4 class="f15 fw400">#Midnight drive</h4>
+                <span class="c-blue f12">#sad #midnight #drive</span>
+              </div>
+            </div>
+            <button type="button" class="btn-more"></button>
+          </div>
+          <!--//뮤직박스 영역-->
+        </div>
+      </div>
+      <div class="typing">0/120</div>
+    </section>
+
+    <section>
+      <div class="tag-select-area">
+        <div class="tag-start"><img src="/images/tag-c.svg" alt="태그추가 영역표시"></div>
+        <button type="button" class="btn-add-hashtag" onclick="popupOpen();">+Add hashtags</button>
+        <span class="add-hashtag choose">#after <button type="button" class="remove-hashtag"></button></span>
+        <span class="add-hashtag choose">#afternoon <button type="button" class="remove-hashtag"></button></span>
+      </div>
+      <div class="picture-box">
+        <button type="button" class="btn-picture"></button>
+      </div>
+    </section>
+  </div>
+
+  <!--- hashtag popup ---------------------------------------->
+  <section class="popup" id="popup">
+    <div class="pop-top">
+      <p class="pop-top-title-s">Add tags</p>
+      <button type="button" class="btn-done c-" >Done</button>
+    </div>
+    <div class="pop-content-small">
+      <div class="pop-wrap pt0">
+        <div class="d-flex">
+          <div class="tag-start"><img src="/images/tag-c.svg" alt="태그추가 영역표시"></div>
+          <div class="hashtag-box" contentEditable="true" placeholder="Add a tags...">
+            <span class="add-hashtag choose" contentEditable="false">#after <button type="button" class="remove-hashtag"></button></span>
+            <span class="add-hashtag choose" contentEditable="false">#afternoon <button type="button" class="remove-hashtag"></button></span>
+            <span class="add-hashtag choose" contentEditable="false">#afterward <button type="button" class="remove-hashtag"></button></span>
+            after..
+          </div>
+        </div>
+
+        <div class="d-flex pt20">
+          <span class="add-hashtag">#after</span>
+          <span class="add-hashtag">#afterward</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="pop-bg" id="popup-bg">
+    <!--- //popup ---------------------------------------->
+</body>
+
+</html>

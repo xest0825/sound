@@ -13,91 +13,37 @@
    <!-- 상태바 색상 / iOS Safari -->
    <meta content='#121212' name='apple-mobile-web-app-status-bar-style'>
    <meta content='yes' name='apple-mobile-web-app-capable'>
-   <link rel="stylesheet" href="/css/common.css">
-   <link rel="stylesheet" href="/css/main.css">
-   <script src="/js/jquery-3.6.1.min.js"></script>
-   <script src="/js/main.js" charset="utf-8"></script>
+   <link rel="stylesheet" href="css/common.css">
+   <link rel="stylesheet" href="css/main.css">
+   <script src="js/jquery-3.6.1.min.js"></script>
+   <script src="js/main.js" charset="utf-8"></script>
    <title>Plasma</title>
    <script>
       const page_id = '[[${page_id}]]';
       $(document).ready(function(){
          console.log('page_id : ' + page_id);
-
-         $('#feed-menu-btn').on('click', function () {
-            console.log('feed menu');
-            location.href = '/feed/feed';
-         });
-
-         $('#search-menu-btn').on('click', function () {
-            console.log('search menu');
-            location.href = '/search/search';
-         });
-
-         $('#notification-menu-btn').on('click', function () {
-            console.log('notification menu');
-            location.href = '/notification/notification';
-         });
-
-         $('#myhome-menu-btn').on('click', function () {
-            console.log('my home menu');
-            location.href = '/account/account';
-         });
-
-         $('.user-area').on('click', function(){
-            console.log('go user profile');
-
-         });
-
-         $('#user-content-0, #user-content-4').on('click', function(){
-            console.log('go user content');
-            /*
-            post 형태, 이미지 포험, 텍스트만 있는 형식등을 나누어야 함.
-             */
-            location.href = '/feed/feed_detail_textOnly';
-         });
-
-         $('#user-content-1').on('click', function(){
-            console.log('go user content');
-            /*
-            post 형태, 이미지 포험, 텍스트만 있는 형식등을 나누어야 함.
-             */
-            location.href = '/feed/feed_detail_image';
-         });
-
-         $('#user-content-2, #user-content-3').on('click', function(){
-            console.log('go user content');
-            /*
-            post 형태, 이미지 포험, 텍스트만 있는 형식등을 나누어야 함.
-             */
-            location.href = '/feed/feed_detail_playlist';
-         });
-
-         $('#post-btn').on('click', function(){
-            location.href = '/feed/feed_post';
-         });
-
-         $('#pl-btn').on('click', function(){
-            location.href = '/feed/playlist';
-         });
       });
    </script>
 </head>
 
 <body>
-   <header class="header">
-      <h2 class="top-title">Feed</h2>
-      <button type="button" class="btn-plus">
-         <img src="/images/plus.svg" alt="플러스버튼(Post/Playlist)">
-      </button>
-   </header>
+  <div class="search-top-area">
+    <div class="search-area">
+      <input type="search" placeholder="Search">
+      <button type="button" class="btn-search"></button>
+    </div>
+    <div class="cancel-area">
+      <button type="button" class="btn-cancel">Cancel</button>
+    </div>
+  </div>
 
-   <div class="menu-wrap">
+   <div class="menu-bottom">
       <ul class="feed-area">
          <li>
             <div class="user-area clear">
                <div class="user-title">
                   <div class="user-profile">
-                     <img src="/images/cat.jpg" alt="프로필 사진">
+                     <img src="images/cat.jpg" alt="프로필 사진">
                   </div>
                   <div class="user-text">
                      <p class="user-id">goldjujube</p>
@@ -108,7 +54,7 @@
             </div>
 
             <!--//user-area-->
-            <div class="user-content" id="user-content-0">
+            <div class="user-content">
                <p class="content-text">I'm going to go to work today, and I'm going to
                   blow up my boss, so please recommend me
                   some songs that can recharge my energy.</p>
@@ -129,7 +75,7 @@
             <div class="user-area clear">
                <div class="user-title">
                   <div class="user-profile">
-                     <img src="/images/cat.jpg" alt="프로필 사진">
+                     <img src="images/cat.jpg" alt="프로필 사진">
                   </div>
                   <div class="user-text">
                      <p class="user-id">goldjujube</p>
@@ -139,12 +85,12 @@
                <div class="user-time">4h</div>
             </div>
             <!--//user-area-->
-            <div class="user-content" id="user-content-1">
+            <div class="user-content">
                <p class="content-text">I'm going to go to work today, and I'm going to
                   blow up my boss, so please recommend me
                   some songs that can recharge my energy.</p>
                <div class="user-content-img">
-                  <img src="/images/img_1.jpg" alt="사진">
+                  <img src="images/img_1.jpg" alt="사진">
                </div>
                <div class="user-content-tag">
                   <span>#sad</span><span>#midnight</span><span>#drive</span>
@@ -163,7 +109,7 @@
             <div class="user-area clear">
                <div class="user-title">
                   <div class="user-profile">
-                     <img src="/images/cat.jpg" alt="프로필 사진">
+                     <img src="images/cat.jpg" alt="프로필 사진">
                   </div>
                   <div class="user-text">
                      <p class="user-id">goldjujube</p>
@@ -173,7 +119,7 @@
                <div class="user-time">4h</div>
             </div>
             <!--//user-area-->
-            <div class="user-content" id="user-content-2">
+            <div class="user-content">
                <p class="content-text">
                   I'm going to go to work today, and I'm going to
                   blow up my boss, so please recommend me
@@ -181,7 +127,7 @@
                </p>
                <div class="user-content-box">
                   <div class="music-cover">
-                     <img src="/images/cover_1.png" alt="음악 앨범 이미지">
+                     <img src="images/cover_1.png" alt="음악 앨범 이미지">
                   </div>
                   <div class="music-title">
                      <h4>Midnight drive</h4>
@@ -204,7 +150,7 @@
             <div class="user-area clear">
                <div class="user-title">
                   <div class="user-profile">
-                     <img src="/images/cat.jpg" alt="프로필 사진">
+                     <img src="images/cat.jpg" alt="프로필 사진">
                   </div>
                   <div class="user-text">
                      <p class="user-id">goldjujube</p>
@@ -214,10 +160,10 @@
                <div class="user-time">4h</div>
             </div>
             <!--//user-area-->
-            <div class="user-content" id="user-content-3">
+            <div class="user-content">
                <div class="user-content-box">
                   <div class="music-cover">
-                     <img src="/images/cover_1.png" alt="음악 앨범 이미지">
+                     <img src="images/cover_1.png" alt="음악 앨범 이미지">
                   </div>
                   <div class="music-title">
                      <h4>Midnight drive</h4>
@@ -240,7 +186,7 @@
             <div class="user-area clear">
                <div class="user-title">
                   <div class="user-profile">
-                     <img src="/images/cat.jpg" alt="프로필 사진">
+                     <img src="images/cat.jpg" alt="프로필 사진">
                   </div>
                   <div class="user-text">
                      <p class="user-id">goldjujube</p>
@@ -250,7 +196,7 @@
                <div class="user-time">4h</div>
             </div>
             <!--//user-area-->
-            <div class="user-content" id="user-content-4">
+            <div class="user-content">
                <p class="content-text">I'm going to go to work today, and I'm going to
                   blow up my boss, so please recommend me
                   some songs that can recharge my energy.</p>
@@ -272,19 +218,12 @@
 
    <nav class="nav">
       <ul class="nav-list">
-         <li class="menu-feed active" id="feed-menu-btn"></li>
-         <li class="menu-search" id="search-menu-btn"></li>
-         <li class="menu-notify" id="notification-menu-btn"></li>
-         <li class="menu-myhome" id="myhome-menu-btn"></li>
+         <li class="menu-feed"></li>
+         <li class="menu-search active"></li>
+         <li class="menu-notify"></li>
+         <li class="menu-myhome"></li>
       </ul>
    </nav>
-
-   <section class="feed-menu-area">
-     <ul class="feed-menu">
-       <li class="feed-post" id="post-btn">Post</li>
-       <li class="feed-playlist" id="pl-btn">Playlist</li>
-     </ul>
-   </section>
 </body>
 
 </html>

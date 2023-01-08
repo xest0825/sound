@@ -34,7 +34,7 @@ public class PageController {
     @GetMapping({"/published/{page}" + ".html"})
     public ModelAndView goPublishedPage(@PathVariable String page) {
         log.info(page);
-        ModelAndView mv = new ModelAndView("/published/" + page);
+        ModelAndView mv = new ModelAndView("published/" + page);
         mv.addObject("page_id", page);
         return mv;
     }
@@ -47,7 +47,7 @@ public class PageController {
     @GetMapping({"/sign-in/{page}"})
     public ModelAndView goSignInPage(@PathVariable String page) {
         log.info(page);
-        ModelAndView mv = new ModelAndView("/sign-in/" + page);
+        ModelAndView mv = new ModelAndView("sign-in/" + page);
         mv.addObject("page_id", page);
         return mv;
     }
@@ -60,7 +60,7 @@ public class PageController {
     @GetMapping({"/feed/{page}"})
     public ModelAndView goFeedPage(@PathVariable String page) {
         log.info(page);
-        ModelAndView mv = new ModelAndView("/feed/" + page);
+        ModelAndView mv = new ModelAndView("feed/" + page);
         mv.addObject("page_id", page);
         return mv;
     }
@@ -73,7 +73,7 @@ public class PageController {
     @GetMapping({ "/search/{page}"})
     public ModelAndView goSearchPage(@PathVariable String page) {
         log.info(page);
-        ModelAndView mv = new ModelAndView("/search/" + page);
+        ModelAndView mv = new ModelAndView("search/" + page);
         mv.addObject("page_id", page);
         return mv;
     }
@@ -86,7 +86,7 @@ public class PageController {
     @GetMapping({ "/notification/{page}"})
     public ModelAndView goNotificationPage(@PathVariable String page) {
         log.info(page);
-        ModelAndView mv = new ModelAndView("/notification/" + page);
+        ModelAndView mv = new ModelAndView("notification/" + page);
         mv.addObject("page_id", page);
         return mv;
     }
@@ -99,7 +99,7 @@ public class PageController {
     @GetMapping({ "/account/{page}"})
     public ModelAndView goAccountPage(@PathVariable String page) {
         log.info(page);
-        ModelAndView mv = new ModelAndView("/account/" + page);
+        ModelAndView mv = new ModelAndView("account/" + page);
         mv.addObject("page_id", page);
         return mv;
     }
