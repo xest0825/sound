@@ -48,6 +48,40 @@
   const page_id = '[[${page_id}]]';
   $(document).ready(function(){
     console.log('page_id : ' + page_id);
+
+    $('#user-list-btn').on('click', function () {
+      console.log('users');
+      $.ajax({
+        url: '/users/'
+        , type: 'GET'
+        , data: {}
+        , contentType: 'application/json; charset=UTF-8'
+        , success: function (data) {
+          console.log(data);
+          $('#result').html(JSON.stringify(data));
+        }
+        , error: function (req, status, error) {
+          console.log(req + status + error);
+        }
+      });
+    });
+
+    $('#check-email-btn').on('click', function () {
+      console.log('check email');
+      $.ajax({
+        url: '/sign-in/check-email-dup'
+        , type: 'POST'
+        , data: JSON.stringify({ email : $('#email').val() })
+        , contentType: 'application/json; charset=UTF-8'
+        , success: function (data) {
+          console.log(data);
+          $('#result').html(JSON.stringify(data));
+        }
+        , error: function (req, status, error) {
+          console.log(req + status + error);
+        }
+      });
+    });
   });
 </script>
 
@@ -63,9 +97,22 @@
       <th>로그인</th>
       <th><button id="login-btn">Login</button></th>
     </tr>
+    <tr>
+      <th>2</th>
+      <th>사용자 목록</th>
+      <th><button id="user-list-btn">Users</button></th>
+    </tr>
+    <tr>
+      <th>3</th>
+      <th>이메일중복체크</th>
+      <th><button id="check-email-btn">이메일중복</button>
+          <input type="text" id="email">
+      </th>
+    </tr>
   </table>
 
-  <div id="result" style="border:1px solid gray;margin:5px;">
+  <div id="result" style="border:1px solid gray;margin:5px;min-height:100px;">
+
   </div>
 
 </body>

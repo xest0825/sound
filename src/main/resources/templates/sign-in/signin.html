@@ -48,6 +48,11 @@
             location.href = '/sign-in/login_email';
          });
       });
+
+      function agree(){
+         popupClose();
+         location.href = '/sign-in/login_email';
+      }
    </script>
 </head>
 
@@ -119,7 +124,7 @@
       <div class="pop-btn-area">
          <div class="pop-opacity"></div>
          <div class="pop-wrap">
-            <button type="button" class="btn-main"  onclick="popupClose()">AGREE</button>
+            <button type="button" class="btn-main"  onclick="agree()">AGREE</button>
             <button type="button" class="btn-text" onclick="popupClose()">CANCEL</button>
          </div>
       </div>

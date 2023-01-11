@@ -9,17 +9,19 @@
     </select>
 
     <sql id="getUserListSql">
-           SELECT  user_id /* varchar(40) 사용자ID */
-                , user_nm /* varchar(100) 사용자명 */
-                , email   /* varchar(300) 이메일 */
-                , mob_no  /* varchar(300) 휴대폰번호 */
-                , in_id   /* varchar(40) 입력자 ID */
-                , in_dtm  /* datetime    입력일시 */
-                , mod_id  /* varchar(40) 수정자 ID */
-                , mod_dtm /* datetime    수정일시 */
+           SELECT tb1.user_id /* varchar(40) 사용자ID */
+                , tb1.user_nm /* varchar(100) 사용자명 */
+                , tb1.email   /* varchar(300) 이메일 */
+                , tb1.mob_no  /* varchar(300) 휴대폰번호 */
+                , tb1.in_id   /* varchar(40) 입력자 ID */
+                , DATE_FORMAT(tb1.in_dtm, '%Y-%m-%d %H:%i:%S') in_dtm  /* datetime    입력일시 */
+                , tb1.mod_id  /* varchar(40) 수정자 ID */
+                , DATE_FORMAT(tb1.mod_dtm, '%Y-%m-%d %H:%i:%S') mod_dtm /* datetime    수정일시 */
              FROM tb_user tb1
         <where>
-                 1 = 1
+            <if test='@io.plasma.sound.util.CommonUtil@isNotEmpty(email)'>
+                AND tb1.email = TRIM(#{email})
+            </if>
         </where>
     </sql>
 
@@ -44,9 +46,9 @@
              , #{email}   /* varchar(300) 이메일 */
              , #{mob_no}  /* varchar(300) 휴대폰번호 */
              , #{in_id}   /* varchar(40) 입력자 ID */
-             , #{in_dtm}  /* datetime    입력일시 */
+             , NOW()      /* datetime    입력일시 */
              , #{mod_id}  /* varchar(40) 수정자 ID */
-             , #{mod_dtm} /* datetime    수정일시 */
+             , NOW()      /* datetime    수정일시 */
              )
     </insert>
 
@@ -55,18 +57,167 @@
         UPDATE tb_user
            SET mod_dtm = NOW()
              , user_nm = #{user_nm} /* varchar(100) 사용자명 */
-             , email = #{email}   /* varchar(300) 이메일 */
-             , mob_no = #{mob_no}  /* varchar(300) 휴대폰번호 */
-             , in_id = #{in_id}   /* varchar(40) 입력자 ID */
-             , in_dtm = #{in_dtm}  /* datetime    입력일시 */
-             , mod_id = #{mod_id}  /* varchar(40) 수정자 ID */
-             , mod_dtm = #{mod_dtm} /* datetime    수정일시 */
+             , email   = #{email}   /* varchar(300) 이메일 */
+             , mob_no  = #{mob_no}  /* varchar(300) 휴대폰번호 */
+             , mod_id  = #{mod_id}  /* varchar(40) 수정자 ID */
          WHERE user_id = #{user_id}
     </update>
 
     <delete id="deleteUser" parameterType="io.plasma.sound.user.UserVO">
         /* user-mapper.xml deleteUser  사용자 삭제 */
         DELETE FROM tb_user
+         WHERE user_id = #{user_id}
+    </delete>
+
+    <select id="getUserConfigList" parameterType="io.plasma.sound.user.UserVO" resultType="Hmap">
+        /* user-mapper.xml getUserConfigList 사용자 설정 조회 */
+        <include refid="getUserConfigListSql" />
+    </select>
+
+    <sql id="getUserConfigListSql">
+       SELECT tb1.seq 		/* bigint(20) PK AI '일련번호' */
+            , tb1.user_id 	/* varchar(40)'사용자 ID' */
+            , tb1.cfg_cd 	/* varchar(20) '설정 코드' */
+            , tb1.cfg_val 	/* varchar(1000) '설정 값' */
+            , tb1.cfg_desc 	/* varchar(1000) '설정 설명' */
+            , tb1.sort_no 	/* int(11) '정렬순서' */
+            , tb1.use_yn 	/* varchar(1) '사용 여부' */
+            , tb1.in_id     /* varchar(40) 입력자 ID */
+            , DATE_FORMAT(tb1.in_dtm, '%Y-%m-%d %H:%i:%S') in_dtm  /* datetime    입력일시 */
+            , tb1.mod_id    /* varchar(40) 수정자 ID */
+            , DATE_FORMAT(tb1.mod_dtm, '%Y-%m-%d %H:%i:%S') mod_dtm /* datetime    수정일시 */
+         FROM tb_user_config tb1
+        <where>
+          <if test='@io.plasma.sound.util.CommonUtil@isNotEmpty(user_id)'>
+          AND tb1.user_id = TRIM(#{user_id})
+          </if>
+        </where>
+    </sql>
+
+    <insert id="insertUserConfig" parameterType="io.plasma.sound.user.UserVO">
+        /* user-mapper.xml insertUserConfig  로그인 사용자 입력 */
+        INSERT
+          INTO tb_user_config
+             (
+               user_id 	/* varchar(40)'사용자 ID' */
+             , cfg_cd 	/* varchar(20) '설정 코드' */
+             , cfg_val 	/* varchar(1000) '설정 값' */
+             , cfg_desc /* varchar(1000) '설정 설명' */
+             , sort_no 	/* int(11) '정렬순서' */
+             , use_yn 	/* varchar(1) '사용 여부' */
+             , in_id   /* varchar(40) 입력자 ID */
+             , in_dtm  /* datetime    입력일시 */
+             , mod_id  /* varchar(40) 수정자 ID */
+             , mod_dtm /* datetime    수정일시 */
+             )
+        VALUES
+             ( #{user_id} 	/* varchar(40)  '사용자 ID' */
+             , #{cfg_cd} 	/* varchar(20)  '설정 코드' */
+             , #{cfg_val} 	/* varchar(1000) '설정 값' */
+             , #{cfg_desc}  /* varchar(1000) '설정 설명' */
+             , #{sort_no} 	/* int(11)      '정렬순서' */
+             , #{use_yn} 	/* varchar(1)   '사용 여부' */
+             , #{in_id}     /* varchar(40)  입력자 ID */
+             , NOW()        /* datetime     입력일시 */
+             , #{mod_id}    /* varchar(40)  수정자 ID */
+             , NOW()        /* datetime     수정일시 */
+             )
+    </insert>
+
+    <update id="updateUserConfig" parameterType="io.plasma.sound.user.UserVO">
+        /* user-mapper.xml updateUserConfig  사용자 설정 수정 */
+        UPDATE tb_user_config
+           SET mod_dtm  = NOW()         /* datetime    수정일시 */
+             , user_id  = #{user_id} 	/* varchar(40)  '사용자 ID' */
+             , cfg_cd   = #{cfg_cd} 	/* varchar(20)  '설정 코드' */
+             , cfg_val  = #{cfg_val} 	/* varchar(1000) '설정 값' */
+             , cfg_desc = #{cfg_desc}   /* varchar(1000) '설정 설명' */
+             , sort_no  = #{sort_no} 	/* int(11)      '정렬순서' */
+             , use_yn   = #{use_yn} 	/* varchar(1)   '사용 여부' */
+             , mod_id   = #{mod_id}     /* varchar(40) 수정자 ID */
+         WHERE user_id  = #{user_id}
+        <if test='@io.plasma.sound.util.CommonUtil@isNotEmpty(cfg_cd)'>
+           AND cfg_cd = TRIM(#{cfg_cd})
+        </if>
+    </update>
+
+    <delete id="deleteUserConfig" parameterType="io.plasma.sound.user.UserVO">
+        /* user-mapper.xml deleteUserConfig  사용자 설정 삭제 */
+        DELETE FROM tb_user_config
+         WHERE user_id = #{user_id}
+        <if test='@io.plasma.sound.util.CommonUtil@isNotEmpty(cfg_cd)'>
+           AND cfg_cd = TRIM(#{cfg_cd})
+        </if>
+    </delete>
+
+    <select id="getLoginUserList" parameterType="io.plasma.sound.signin.LoginVO" resultType="Hmap">
+        /* user-mapper.xml getLoginUserList 로그인 사용자 조회 */
+        <include refid="getLoginUserListSql" />
+    </select>
+
+    <sql id="getLoginUserListSql">
+         SELECT tb1.login_id
+              , tb1.login_typ
+              , tb1.login_pw
+              , tb1.user_id /* varchar(40) 사용자ID */
+              , tb1.accnt_sts
+              , tb1.in_id   /* varchar(40) 입력자 ID */
+              , DATE_FORMAT(tb1.in_dtm, '%Y-%m-%d %H:%i:%S') in_dtm  /* datetime    입력일시 */
+              , tb1.mod_id  /* varchar(40) 수정자 ID */
+              , DATE_FORMAT(tb1.mod_dtm, '%Y-%m-%d %H:%i:%S') mod_dtm /* datetime    수정일시 */
+           FROM tb_login tb1
+        <where>
+            <if test='@io.plasma.sound.util.CommonUtil@isNotEmpty(user_id)'>
+            AND tb1.user_id = TRIM(#{user_id})
+            </if>
+            <if test='@io.plasma.sound.util.CommonUtil@isNotEmpty(login_id)'>
+            AND tb1.login_id = TRIM(#{login_id})
+            </if>
+        </where>
+    </sql>
+
+    <insert id="insertLoginUser" parameterType="io.plasma.sound.signin.LoginVO">
+        /* user-mapper.xml insertLoginUser  로그인 사용자 입력 */
+        INSERT
+          INTO tb_login
+             ( login_id
+             , login_typ
+             , login_pw
+             , user_id /* varchar(40) 사용자ID */
+             , accnt_sts
+             , in_id   /* varchar(40) 입력자 ID */
+             , in_dtm  /* datetime    입력일시 */
+             , mod_id  /* varchar(40) 수정자 ID */
+             , mod_dtm /* datetime    수정일시 */
+             )
+        VALUES
+             ( #{login_id}
+             , #{login_typ}
+             , #{login_pw}
+             , #{user_id} /* varchar(40) 사용자ID */
+             , #{accnt_sts}
+             , #{in_id}   /* varchar(40) 입력자 ID */
+             , NOW()      /* datetime    입력일시 */
+             , #{mod_id}  /* varchar(40) 수정자 ID */
+             , NOW()      /* datetime    수정일시 */
+             )
+    </insert>
+
+    <update id="updateLoginUser" parameterType="io.plasma.sound.signin.LoginVO">
+        /* user-mapper.xml updateLoginUser  로그인 사용자 수정 */
+        UPDATE tb_login
+           SET mod_dtm   = NOW() /* datetime    수정일시 */
+             , login_id  = #{login_id}
+             , login_typ = #{login_typ}
+             , login_pw  = #{login_pw}
+             , accnt_sts = #{accnt_sts}
+             , mod_id    = #{mod_id} /* varchar(40) 수정자 ID */
+         WHERE user_id = #{user_id}
+    </update>
+
+    <delete id="deleteLoginUser" parameterType="io.plasma.sound.signin.LoginVO">
+        /* user-mapper.xml deleteLoginUser  로그인 사용자 삭제 */
+        DELETE FROM tb_login
          WHERE user_id = #{user_id}
     </delete>
 

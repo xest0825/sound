@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Playlist">
+
+    <select id="getPlayLists" parameterType="io.plasma.sound.playlist.PlayListVO" resultType="Hmap">
+        /* playlist-mapper.xml getCodeList 플레이리스트 조회 */
+        <include refid="getPlayListsSql" />
+    </select>
+
+    <sql id="getPlayListsSql">
+           SELECT tb1.seq 			/* bigint(20) PK AI '일련번호' */
+                , tb1.ctg 			/* varchar(100) '분류코드' */
+                , tb1.tag 			/* varchar(100)  '태그' */
+                , tb1.title 		/* varchar(200) '플레이리스트 제목' */
+                , tb1.description 	/* varchar(200) '플레이리스트 설명' */
+                , tb1.in_id         /* varchar(40) 입력자 ID */
+                , DATE_FORMAT(tb1.in_dtm, '%Y-%m-%d %H:%i:%S') in_dtm  /* datetime    입력일시 */
+                , tb1.mod_id        /* varchar(40) 수정자 ID */
+                , DATE_FORMAT(tb1.mod_dtm, '%Y-%m-%d %H:%i:%S') mod_dtm /* datetime    수정일시 */
+             FROM tb_playlist_mst tb1
+        <where>
+            <if test='@io.plasma.sound.util.CommonUtil@isNotEmpty(seq)'>
+              AND tb1.seq = TRIM(#{seq})
+            </if>
+        </where>
+    </sql>
+
+    <insert id="insertPlayList" parameterType="io.plasma.sound.playlist.PlayListVO">
+        /* playlist-mapper.xml insertPlayList 플레이리스트 입력 */
+        INSERT
+          INTO tb_playlist_mst
+             (
+               ctg 			/* varchar(100) '분류코드' */
+             , tag 			/* varchar(100)  '태그' */
+             , title 		/* varchar(200) '플레이리스트 제목' */
+             , description 	/* varchar(200) '플레이리스트 설명' */
+             , in_id        /* varchar(40) 입력자 ID */
+             , in_dtm       /* datetime    입력일시 */
+             , mod_id       /* varchar(40) 수정자 ID */
+             , mod_dtm      /* datetime    수정일시 */
+             )
+        VALUES
+             (
+               #{ctg} 			/* varchar(100) '분류코드' */
+             , #{tag} 			/* varchar(100)  '태그' */
+             , #{title} 		/* varchar(200) '플레이리스트 제목' */
+             , #{description} 	/* varchar(200) '플레이리스트 설명' */
+             , #{in_id}         /* varchar(40) 입력자 ID */
+             , NOW()            /* datetime    입력일시 */
+             , #{mod_id}        /* varchar(40) 수정자 ID */
+             , NOW()            /* datetime    수정일시 */
+             )
+    </insert>
+
+    <update id="updatePlayList" parameterType="io.plasma.sound.playlist.PlayListVO">
+        /* playlist-mapper.xml updatePlayList 플레이리스트 수정 */
+        UPDATE tb_playlist_mst
+           SET mod_dtm = NOW()
+             , ctg = #{ctg} 			/* varchar(100) '분류코드' */
+             , tag = #{tag} 			/* varchar(100)  '태그' */
+             , title = #{title} 		/* varchar(200) '플레이리스트 제목' */
+             , description = #{description} 	/* varchar(200) '플레이리스트 설명' */
+             , mod_id  = #{mod_id}  /* varchar(40) 수정자 ID */
+         WHERE seq = #{seq}
+    </update>
+
+    <delete id="deletePlayList" parameterType="io.plasma.sound.playlist.PlayListVO">
+        /* playlist-mapper.xml deletePlayList 플레이리스트 삭제 */
+        DELETE FROM tb_playlist_mst
+         WHERE seq = #{seq}
+    </delete>
+
+    <select id="getTrackListInPlayList" parameterType="io.plasma.sound.playlist.TrackVO" resultType="Hmap">
+        /* playlist-mapper.xml getTrackListInPlayList 트랙 조회 */
+        <include refid="getTrackListInPlayListSql" />
+    </select>
+
+    <sql id="getTrackListInPlayListSql">
+        SELECT tb1.seq 			/* bigint(20) PK AI '일련번호' */
+             , tb1.track_seq
+             , tb1.sort_no
+             , tb1.in_id        /* varchar(40) 입력자 ID */
+             , DATE_FORMAT(tb1.in_dtm, '%Y-%m-%d %H:%i:%S') in_dtm  /* datetime    입력일시 */
+             , tb1.mod_id       /* varchar(40) 수정자 ID */
+             , DATE_FORMAT(tb1.mod_dtm, '%Y-%m-%d %H:%i:%S') mod_dtm /* datetime    수정일시 */
+          FROM tb_playlist_tracks tb1
+        <where>
+            <if test='@io.plasma.sound.util.CommonUtil@isNotEmpty(seq)'>
+           AND tb1.seq = TRIM(#{seq})
+            </if>
+        </where>
+    </sql>
+
+    <insert id="insertTrackInPlayList" parameterType="io.plasma.sound.playlist.TrackVO">
+        /* playlist-mapper.xml insertTrackInPlayList 트랙 입력 */
+        INSERT
+          INTO tb_playlist_tracks
+             (
+               track_seq
+             , in_id        /* varchar(40) 입력자 ID */
+             , in_dtm       /* datetime    입력일시 */
+             , mod_id       /* varchar(40) 수정자 ID */
+             , mod_dtm      /* datetime    수정일시 */
+             )
+        VALUES
+             (
+               #{track_seq}
+             , #{in_id}         /* varchar(40) 입력자 ID */
+             , NOW()            /* datetime    입력일시 */
+             , #{mod_id}        /* varchar(40) 수정자 ID */
+             , NOW()            /* datetime    수정일시 */
+             )
+    </insert>
+
+    <update id="updateTrackInPlayList" parameterType="io.plasma.sound.playlist.TrackVO">
+        /* playlist-mapper.xml updateTrackInPlayList 트랙 수정 */
+        UPDATE tb_playlist_tracks
+           SET mod_dtm = NOW()
+             , track_seq = #{track_seq}
+             , mod_id  = #{mod_id}  /* varchar(40) 수정자 ID */
+         WHERE seq = #{seq}
+    </update>
+
+    <delete id="deleteTrackInPlayList" parameterType="io.plasma.sound.playlist.TrackVO">
+        /* playlist-mapper.xml deleteTrackInPlayList 트랙리스트 삭제 */
+        DELETE FROM tb_playlist_tracks
+         WHERE seq = #{seq}
+    </delete>
+
+    <select id="getTrackList" parameterType="io.plasma.sound.playlist.TrackVO" resultType="Hmap">
+        /* playlist-mapper.xml getTrackList 트랙 조회 */
+        <include refid="getTrackListsSql" />
+    </select>
+
+    <sql id="getTrackListsSql">
+       SELECT tb1.seq 	 	/* bigint(20) PK AI '일련번호' */
+            , tb1.title  		/* varchar(200) '제목' */
+            , tb1.artist 		/* varchar(100) '가수' */
+            , tb1.src 	 	/* varchar(400) '재생 출처(URI)' */
+            , tb1.src_typ 	/* varchar(10) '음원 재생 출처 구분(스포티파이, 애플뮤직)' */
+            , tb1.play_tm 	/* varchar(10) '재생시간' */
+            , tb1.file_size 	/* int(11) '파일사이즈' */
+            , tb1.file_format /* varchar(20) '파일형식' */
+            , tb1.in_id        /* varchar(40) 입력자 ID */
+            , DATE_FORMAT(tb1.in_dtm, '%Y-%m-%d %H:%i:%S') in_dtm  /* datetime    입력일시 */
+            , tb1.mod_id       /* varchar(40) 수정자 ID */
+            , DATE_FORMAT(tb1.mod_dtm, '%Y-%m-%d %H:%i:%S') mod_dtm /* datetime    수정일시 */
+         FROM tb_track tb1
+        <where>
+            <if test='@io.plasma.sound.util.CommonUtil@isNotEmpty(seq)'>
+          AND tb1.seq = TRIM(#{seq})
+            </if>
+        </where>
+    </sql>
+
+    <insert id="insertTrack" parameterType="io.plasma.sound.playlist.TrackVO">
+        /* playlist-mapper.xml insertTrack 트랙 입력 */
+        INSERT
+          INTO tb_track
+             (
+               title  		/* varchar(200) '제목' */
+             , artist 		/* varchar(100) '가수' */
+             , src 	 	    /* varchar(400) '재생 출처(URI)' */
+             , src_typ 	    /* varchar(10) '음원 재생 출처 구분(스포티파이, 애플뮤직)' */
+             , play_tm 	    /* varchar(10) '재생시간' */
+             , file_size 	/* int(11) '파일사이즈' */
+             , file_format  /* varchar(20) '파일형식' */
+             , in_id        /* varchar(40) 입력자 ID */
+             , in_dtm       /* datetime    입력일시 */
+             , mod_id       /* varchar(40) 수정자 ID */
+             , mod_dtm      /* datetime    수정일시 */
+             )
+        VALUES
+             (
+               #{title}  		/* varchar(200) '제목' */
+             , #{artist} 		/* varchar(100) '가수' */
+             , #{src} 	 	    /* varchar(400) '재생 출처(URI)' */
+             , #{src_typ} 	    /* varchar(10) '음원 재생 출처 구분(스포티파이, 애플뮤직)' */
+             , #{play_tm} 	    /* varchar(10) '재생시간' */
+             , #{file_size} 	/* int(11) '파일사이즈' */
+             , #{file_format}   /* varchar(20) '파일형식' */
+             , #{in_id}         /* varchar(40) 입력자 ID */
+             , NOW()            /* datetime    입력일시 */
+             , #{mod_id}        /* varchar(40) 수정자 ID */
+             , NOW()            /* datetime    수정일시 */
+             )
+    </insert>
+
+    <update id="updateTrack" parameterType="io.plasma.sound.playlist.TrackVO">
+        /* playlist-mapper.xml updateTrack 트랙 수정 */
+        UPDATE tb_track
+           SET mod_dtm      = NOW()
+             , title        = #{title}  		/* varchar(200) '제목' */
+             , artist       = #{artist} 		/* varchar(100) '가수' */
+             , src          = #{src} 	 	    /* varchar(400) '재생 출처(URI)' */
+             , src_typ      = #{src_typ} 	    /* varchar(10) '음원 재생 출처 구분(스포티파이, 애플뮤직)' */
+             , play_tm      = #{play_tm} 	    /* varchar(10) '재생시간' */
+             , file_size    = #{file_size} 	/* int(11) '파일사이즈' */
+             , file_format  = #{file_format}   /* varchar(20) '파일형식' */
+             , mod_id       = #{mod_id}  /* varchar(40) 수정자 ID */
+         WHERE seq = #{seq}
+    </update>
+
+    <delete id="deleteTrack" parameterType="io.plasma.sound.playlist.TrackVO">
+        /* playlist-mapper.xml deleteTrack 트랙리스트 삭제 */
+        DELETE FROM tb_track
+         WHERE seq = #{seq}
+    </delete>
+
+
+
+</mapper>

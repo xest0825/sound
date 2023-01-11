@@ -30,4 +30,20 @@ public class UserService {
         return dao.deleteUser(vo);
     }
 
+    public List<HashMap<String, Object>> getUserConfigList(UserVO vo) {
+        return dao.getUserConfigList(vo);
+    }
+
+    public int insertUserConfig(UserVO vo) {
+        return dao.insertUserConfig(vo);
+    }
+
+    public int updateUserConfig(UserVO vo) {
+        return dao.updateUserConfig(vo);
+    }
+
+    public int deleteUserConfig(UserVO vo) {
+        return dao.deleteUserConfig(vo);
+    }
+
 }

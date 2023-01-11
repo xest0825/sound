@@ -11,31 +11,42 @@ import java.util.List;
 @Repository
 public class UserDAO {
 
-    //@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
-    //@Autowired
-    // private SqlSessionTemplate sqlSession;
+    @Autowired
+    private SqlSessionTemplate sqlSession;
 
     private static final String SQL_PREFIX = "User.";
 
     public List<HashMap<String, Object>> getUserList(UserVO vo) {
-        //return sqlSession.selectList(SQL_PREFIX + "getUserList", vo);
-        List<HashMap<String, Object>> list = new ArrayList<>();
-        return list;
+        return sqlSession.selectList(SQL_PREFIX + "getUserList", vo);
     }
 
     public int insertUser(UserVO vo) {
-        // return sqlSession.insert(SQL_PREFIX + "insertUser", vo);
-        return 1;
+        return sqlSession.insert(SQL_PREFIX + "insertUser", vo);
     }
 
     public int updateUser(UserVO vo) {
-        // return sqlSession.update(SQL_PREFIX + "updateUser", vo);
-        return 1;
+        return sqlSession.update(SQL_PREFIX + "updateUser", vo);
     }
 
     public int deleteUser(UserVO vo) {
-        // return sqlSession.delete(SQL_PREFIX + "deleteUser", vo);
-        return 1;
+        return sqlSession.delete(SQL_PREFIX + "deleteUser", vo);
+    }
+
+
+    public List<HashMap<String, Object>> getUserConfigList(UserVO vo) {
+        return sqlSession.selectList(SQL_PREFIX + "getUserConfigList", vo);
+    }
+
+    public int insertUserConfig(UserVO vo) {
+        return sqlSession.insert(SQL_PREFIX + "insertUserConfig", vo);
+    }
+
+    public int updateUserConfig(UserVO vo) {
+        return sqlSession.update(SQL_PREFIX + "updateUserConfig", vo);
+    }
+
+    public int deleteUserConfig(UserVO vo) {
+        return sqlSession.delete(SQL_PREFIX + "deleteUserConfig", vo);
     }
 
 

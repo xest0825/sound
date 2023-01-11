@@ -1,4 +1,4 @@
-package io.plasma.sound.user;
+package io.plasma.sound.code;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,44 +6,40 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * 사용자 관리
- */
 @Slf4j
 @RestController
-public class UserController {
+public class CodeController {
 
     @Autowired
-    private UserService service;
+    private CodeService service;
 
     /**
-     * 사용자 목록 조회
+     * 코드 목록 조회
      * @param vo
      * @return
      */
-    @GetMapping("/users")
-    public ResponseEntity<List<HashMap<String, Object>>> getUsers(UserVO vo) {
-        log.info("[GET] /users");
-        List<HashMap<String, Object>> list = service.getUserList(vo);
+    @GetMapping("/codes")
+    public ResponseEntity<List<HashMap<String, Object>>> getCodeList(CodeVO vo) {
+        log.info("[GET] /codes");
+        List<HashMap<String, Object>> list = service.getCodeList(vo);
         ResponseEntity<List<HashMap<String, Object>>> ret = new ResponseEntity<>(list, HttpStatus.OK);
         return ret;
     };
 
     /**
-     * 사용자 입력
-     * @param model
+     * 코드 입력
+     * @param vo
      * @return
      */
-    @PostMapping("/users")
-    public ResponseEntity<HashMap<String, Object>> insertUser(@RequestBody UserVO model) {
-        log.info("[POST] /users");
+    @PostMapping("/codes")
+    public ResponseEntity<HashMap<String, Object>> insertCode(@RequestBody CodeVO vo) {
+        log.info("[POST] /codes");
 
         HashMap map = new HashMap<String, Object>();
-        if (service.insertUser(model) > 0) {
+        if (service.insertCode(vo) > 0) {
             map.put("result", "OK");
         } else {
             map.put("result", "FAIL");
@@ -54,17 +50,17 @@ public class UserController {
     };
 
     /**
-     * 사용자 수정
+     * 코드 수정
      * @param model
      * @return
      */
-    @PutMapping("/users")
-    public ResponseEntity<HashMap<String, Object>> updateUser(@RequestBody UserVO model) {
+    @PutMapping("/codes")
+    public ResponseEntity<HashMap<String, Object>> updateCode(@RequestBody CodeVO model) {
 
-        log.info("[UPDATE] /users");
+        log.info("[UPDATE] /codes");
 
         HashMap map = new HashMap<String, Object>();
-        if (service.updateUser(model) > 0) {
+        if (service.updateCode(model) > 0) {
             map.put("result", "OK");
         } else {
             map.put("result", "FAIL");
@@ -74,16 +70,16 @@ public class UserController {
     };
 
     /**
-     * 사용자 삭제
+     * 코드 삭제
      * @param model
      * @return
      */
-    @DeleteMapping("/users")
-    public ResponseEntity<HashMap<String, Object>> deleteUser(@RequestBody UserVO model) {
-        log.info("[DELETE] /users");
+    @DeleteMapping("/codes")
+    public ResponseEntity<HashMap<String, Object>> deleteCode(@RequestBody CodeVO model) {
+        log.info("[DELETE] /codes");
 
         HashMap map = new HashMap<String, Object>();
-        if (service.deleteUser(model) > 0) {
+        if (service.deleteCode(model) > 0) {
             map.put("result", "OK");
         } else {
             map.put("result", "FAIL");
@@ -93,29 +89,29 @@ public class UserController {
     };
 
     /**
-     * 사용자 설정 목록 조회
-     * @param model
+     * 코드 목록 조회
+     * @param vo
      * @return
      */
-    @GetMapping("/user-config")
-    public ResponseEntity<List<HashMap<String, Object>>> getUserConfigList(UserVO model) {
-        log.info("[GET] /user-config");
-        List<HashMap<String, Object>> list = service.getUserConfigList(model);
+    @GetMapping("/group-codes")
+    public ResponseEntity<List<HashMap<String, Object>>> getGroupCodeList(CodeVO vo) {
+        log.info("[GET] /group-codes");
+        List<HashMap<String, Object>> list = service.getGroupCodeList(vo);
         ResponseEntity<List<HashMap<String, Object>>> ret = new ResponseEntity<>(list, HttpStatus.OK);
         return ret;
     };
 
     /**
-     * 사용자 설정 입력
-     * @param model
+     * 코드 입력
+     * @param vo
      * @return
      */
-    @PostMapping("/user-config")
-    public ResponseEntity<HashMap<String, Object>> insertUserConfig(@RequestBody UserVO model) {
-        log.info("[POST] /user-config");
+    @PostMapping("/group-codes")
+    public ResponseEntity<HashMap<String, Object>> insertGroupCode(@RequestBody CodeVO vo) {
+        log.info("[POST] /group-codes");
 
         HashMap map = new HashMap<String, Object>();
-        if (service.insertUserConfig(model) > 0) {
+        if (service.insertGroupCode(vo) > 0) {
             map.put("result", "OK");
         } else {
             map.put("result", "FAIL");
@@ -126,17 +122,17 @@ public class UserController {
     };
 
     /**
-     * 사용자 설정 수정
+     * 코드 수정
      * @param model
      * @return
      */
-    @PutMapping("/user-config")
-    public ResponseEntity<HashMap<String, Object>> updateUserConfig(@RequestBody UserVO model) {
+    @PutMapping("/group-codes")
+    public ResponseEntity<HashMap<String, Object>> updateGroupCode(@RequestBody CodeVO model) {
 
-        log.info("[UPDATE] /user-config");
+        log.info("[UPDATE] /group-codes");
 
         HashMap map = new HashMap<String, Object>();
-        if (service.updateUserConfig(model) > 0) {
+        if (service.updateGroupCode(model) > 0) {
             map.put("result", "OK");
         } else {
             map.put("result", "FAIL");
@@ -146,16 +142,16 @@ public class UserController {
     };
 
     /**
-     * 사용자 설정 삭제
+     * 코드 삭제
      * @param model
      * @return
      */
-    @DeleteMapping("/user-config")
-    public ResponseEntity<HashMap<String, Object>> deleteUserConfig(@RequestBody UserVO model) {
-        log.info("[DELETE] /user-config");
+    @DeleteMapping("/group-codes")
+    public ResponseEntity<HashMap<String, Object>> deleteGroupCode(@RequestBody CodeVO model) {
+        log.info("[DELETE] /group-codes");
 
         HashMap map = new HashMap<String, Object>();
-        if (service.deleteUserConfig(model) > 0) {
+        if (service.deleteGroupCode(model) > 0) {
             map.put("result", "OK");
         } else {
             map.put("result", "FAIL");
@@ -163,4 +159,5 @@ public class UserController {
         ResponseEntity<HashMap<String, Object>> ret = new ResponseEntity<>(map, HttpStatus.OK);
         return ret;
     };
+
 }

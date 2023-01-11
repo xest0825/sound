@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Feed">
+
+    <select id="getFeedList" parameterType="io.plasma.sound.feed.FeedVO" resultType="Hmap">
+        /* feed-mapper.xml getFeedList  피드 조회 */
+        <include refid="getFeedListSql" />
+    </select>
+
+    <sql id="getFeedListSql">
+           SELECT seq 		/* bigint(20) PK AI '일련번호' */
+                , item_typ /* varchar(10) '아이템유형(포스트, 플레이리스트, 콘텐츠)' */
+                , title 	/* varchar(200) '제목' */
+                , content 	/* text '내용' */
+                , ref_typ 	/* varchar(10) '참조 유형' */
+                , ref_id 	/* varchar(40) '참조 ID' */
+                , in_id 	/* varchar(40) '입력자 ID' */
+                , in_dtm 	/* datetime '입력일시' */
+                , mod_id 	/* varchar(40) '수정자 ID' */
+                , mod_dtm 	/* datetime '수정일시' */
+             FROM tb_item tb1
+        <where>
+            <if test='@io.plasma.sound.util.CommonUtil@isNotEmpty(seq)'>
+              AND tb1.seq = #{seq}
+            </if>
+        </where>
+    </sql>
+
+    <insert id="insertFeed" parameterType="io.plasma.sound.feed.FeedVO">
+        /* feed-mapper.xml insertFeed  피드 입력 */
+        INSERT
+          INTO tb_item
+             (
+               item_typ /* varchar(10) '아이템유형(포스트, 플레이리스트, 콘텐츠)' */
+             , title 	/* varchar(200) '제목' */
+             , content 	/* text '내용' */
+             , ref_typ 	/* varchar(10) '참조 유형' */
+             , ref_id 	/* varchar(40) '참조 ID' */
+             , in_id 	/* varchar(40) '입력자 ID' */
+             , in_dtm 	/* datetime '입력일시' */
+             , mod_id 	/* varchar(40) '수정자 ID' */
+             , mod_dtm 	/* datetime '수정일시' */
+             )
+        VALUES
+             (
+               #{item_typ}  /* varchar(10) '아이템유형(포스트, 플레이리스트, 콘텐츠)' */
+             , #{title} 	/* varchar(200) '제목' */
+             , #{content} 	/* text '내용' */
+             , #{ref_typ} 	/* varchar(10) '참조 유형' */
+             , #{ref_id} 	/* varchar(40) '참조 ID' */
+             , #{in_id} 	/* varchar(40) '입력자 ID' */
+             , NOW() 	    /* datetime '입력일시' */
+             , #{mod_id} 	/* varchar(40) '수정자 ID' */
+             , NOW() 	    /* datetime '수정일시' */
+             )
+    </insert>
+
+    <update id="updateFeed" parameterType="io.plasma.sound.feed.FeedVO">
+        /* feed-mapper.xml updateFeed  피드 수정 */
+        UPDATE tb_item
+           SET mod_dtm  = NOW()
+             , item_typ = #{item_typ}   /* varchar(10) '아이템유형(포스트, 플레이리스트, 콘텐츠)' */
+             , title 	= #{title}      /* varchar(200) '제목' */
+             , content 	= #{content}    /* text '내용' */
+             , ref_typ 	= #{ref_typ}    /* varchar(10) '참조 유형' */
+             , ref_id 	= #{ref_id}     /* varchar(40) '참조 ID' */
+             , in_id 	= #{in_id}      /* varchar(40) '입력자 ID' */
+             , in_dtm 	= NOW()         /* datetime '입력일시' */
+             , mod_id 	= #{mod_id}     /* varchar(40) '수정자 ID' */
+         WHERE seq      = #{seq}
+    </update>
+
+    <delete id="deleteFeed" parameterType="io.plasma.sound.feed.FeedVO">
+        /* feed-mapper.xml deleteFeed  피드 삭제 */
+        DELETE FROM tb_item
+         WHERE seq = #{seq}
+    </delete>
+
+
+
+</mapper>

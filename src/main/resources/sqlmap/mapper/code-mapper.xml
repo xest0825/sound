@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Code">
+
+    <select id="getCodeList" parameterType="io.plasma.sound.code.CodeVO" resultType="Hmap">
+        /* user-mapper.xml getCodeList  코드 조회 */
+        <include refid="getCodeListSql" />
+    </select>
+
+    <sql id="getCodeListSql">
+           SELECT tb1.cd      /* varchar(20) '콩통코드' */
+                , tb1.cd_val  /* varchar(30) '공통 코드값' */
+                , tb1.grp_cd  /* varchar(20) '그룹 코드' */
+                , tb2.grp_cd_val
+                , tb1.use_yn  /* varchar(1) '사용여부' */
+                , tb1.sort_no /* int(11) '정렬순서' */
+                , tb1.in_id   /* varchar(40) 입력자 ID */
+                , DATE_FORMAT(tb1.in_dtm, '%Y-%m-%d %H:%i:%S') in_dtm  /* datetime    입력일시 */
+                , tb1.mod_id  /* varchar(40) 수정자 ID */
+                , DATE_FORMAT(tb1.mod_dtm, '%Y-%m-%d %H:%i:%S') mod_dtm /* datetime    수정일시 */
+             FROM tb_cd tb1
+             LEFT OUTER JOIN tb_grp_cd tb2
+               ON tb1.grp_cd = tb2.grp_cd
+        <where>
+            <if test='@io.plasma.sound.util.CommonUtil@isNotEmpty(grp_cd)'>
+                AND tb1.grp_cd = TRIM(#{grp_cd})
+            </if>
+            <if test='@io.plasma.sound.util.CommonUtil@isNotEmpty(cd)'>
+                AND tb1.cd = TRIM(#{cd})
+            </if>
+        </where>
+    </sql>
+
+    <insert id="insertCode" parameterType="io.plasma.sound.code.CodeVO">
+        /* code-mapper.xml insertCode 코드 입력 */
+        INSERT
+          INTO tb_code
+             (
+               cd       /* varchar(20) '콩통코드' */
+             , cd_val   /* varchar(30) '공통 코드값' */
+             , grp_cd   /* varchar(20) '그룹 코드' */
+             , use_yn   /* varchar(1) '사용여부' */
+             , sort_no  /* int(11) '정렬순서' */
+             , in_id    /* varchar(40) 입력자 ID */
+             , in_dtm   /* datetime    입력일시 */
+             , mod_id   /* varchar(40) 수정자 ID */
+             , mod_dtm  /* datetime    수정일시 */
+             )
+        VALUES
+             (
+               #{cd}      /* varchar(20) '콩통코드' */
+             , #{cd_val}  /* varchar(30) '공통 코드값' */
+             , #{grp_cd}  /* varchar(20) '그룹 코드' */
+             , #{use_yn}  /* varchar(1) '사용여부' */
+             , #{sort_no} /* int(11) '정렬순서' */
+             , #{in_id}   /* varchar(40) 입력자 ID */
+             , NOW()      /* datetime    입력일시 */
+             , #{mod_id}  /* varchar(40) 수정자 ID */
+             , NOW()      /* datetime    수정일시 */
+             )
+    </insert>
+
+    <update id="updateCode" parameterType="io.plasma.sound.code.CodeVO">
+        /* code-mapper.xml updateCode  코드 수정 */
+        UPDATE tb_code
+           SET mod_dtm = NOW()
+             , cd      = #{cd}      /* varchar(20) '콩통코드' */
+             , cd_val  = #{cd_val}  /* varchar(30) '공통 코드값' */
+             , grp_cd  = #{grp_cd}  /* varchar(20) '그룹 코드' */
+             , use_yn  = #{use_yn}  /* varchar(1) '사용여부' */
+             , sort_no = #{sort_no} /* int(11) '정렬순서' */
+             , mod_id  = #{mod_id}  /* varchar(40) 수정자 ID */
+         WHERE grp_cd = #{grp_cd}
+           AND cd     = #{cd}
+    </update>
+
+    <delete id="deleteCode" parameterType="io.plasma.sound.code.CodeVO">
+        /* code-mapper.xml deleteCode 코드 삭제 */
+        DELETE FROM tb_code
+         WHERE grp_cd = #{grp_cd}
+        <if test='@io.plasma.sound.util.CommonUtil@isNotEmpty(cd)'>
+           AND tb1.cd = TRIM(#{cd})
+        </if>
+    </delete>
+
+    <select id="getGroupCodeList" parameterType="io.plasma.sound.code.CodeVO" resultType="Hmap">
+        /* code-mapper.xml getGroupCodeList  그룹코드 조회 */
+        <include refid="getGroupCodeListSql" />
+    </select>
+
+    <sql id="getGroupCodeListSql">
+         SELECT tb1.grp_cd 		/* varchar(20) '그룹코드' */
+              , tb1.grp_cd_val  /* varchar(30) '그룹코드값' */
+              , tb1.grp_cd_desc /* varchar(100) '그룹코드 설명' */
+              , tb1.use_yn  	/* varchar(1) '사용여부' */
+              , tb1.sort_no 	/* int(11) '정렬순서' */
+              , tb1.in_id       /* varchar(40) 입력자 ID */
+              , DATE_FORMAT(tb1.in_dtm, '%Y-%m-%d %H:%i:%S') in_dtm  /* datetime    입력일시 */
+              , tb1.mod_id  /* varchar(40) 수정자 ID */
+              , DATE_FORMAT(tb1.mod_dtm, '%Y-%m-%d %H:%i:%S') mod_dtm /* datetime    수정일시 */
+           FROM tb_grp_cd tb1
+        <where>
+            <if test='@io.plasma.sound.util.CommonUtil@isNotEmpty(grp_cd)'>
+            AND tb1.grp_cd = TRIM(#{grp_cd})
+            </if>
+        </where>
+    </sql>
+
+    <insert id="insertGroupCode" parameterType="io.plasma.sound.code.CodeVO">
+        /* code-mapper.xml insertGroupCode  그룹코드 입력 */
+        INSERT
+          INTO tb_grp_cd
+             ( grp_cd 		    /* varchar(20) '그룹코드' */
+             , grp_cd_val       /* varchar(30) '그룹코드값' */
+             , grp_cd_desc      /* varchar(100) '그룹코드 설명' */
+             , use_yn  	        /* varchar(1) '사용여부' */
+             , sort_no 	        /* int(11) '정렬순서' */
+             , in_id            /* varchar(40) 입력자 ID */
+             , in_dtm           /* datetime    입력일시 */
+             , mod_id           /* varchar(40) 수정자 ID */
+             , mod_dtm          /* datetime    수정일시 */
+             )
+        VALUES
+             ( #{grp_cd} 	    /* varchar(20) '그룹코드' */
+             , #{grp_cd_val}    /* varchar(30) '그룹코드값' */
+             , #{grp_cd_desc}   /* varchar(100) '그룹코드 설명' */
+             , #{use_yn}  	    /* varchar(1) '사용여부' */
+             , #{sort_no} 	    /* int(11) '정렬순서' */
+             , #{in_id}         /* varchar(40) 입력자 ID */
+             , NOW()            /* datetime    입력일시 */
+             , #{mod_id}        /* varchar(40) 수정자 ID */
+             , NOW()            /* datetime    수정일시 */
+             )
+    </insert>
+
+    <update id="updateGroupCode" parameterType="io.plasma.sound.code.CodeVO">
+        /* code-mapper.xml updateGroupCode  그룹코드 수정 */
+        UPDATE tb_grp_cd
+           SET mod_dtm      = NOW()             /* datetime    수정일시 */
+             , grp_cd_val   = #{grp_cd_val}     /* varchar(30) '그룹코드값' */
+             , grp_cd_desc  = #{grp_cd_desc}    /* varchar(100) '그룹코드 설명' */
+             , use_yn       = #{use_yn}  	    /* varchar(1) '사용여부' */
+             , sort_no      = #{sort_no} 	    /* int(11) '정렬순서' */
+             , mod_id       = #{mod_id}         /* varchar(40) 수정자 ID */
+         WHERE grp_cd       = #{grp_cd} 	    /* varchar(20) '그룹코드' */
+    </update>
+
+    <delete id="deleteGroupCode" parameterType="io.plasma.sound.code.CodeVO">
+        /* code-mapper.xml deleteGroupCode 그루보드 삭제 */
+        DELETE FROM tb_grp_cd
+         WHERE grp_cd = #{grp_cd} /* varchar(20) '그룹코드' */
+    </delete>
+
+</mapper>
