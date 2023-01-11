@@ -58,4 +58,12 @@ public class SignInService {
         return dao.deleteLoginUser(vo);
     }
 
+    public List<HashMap<String, Object>> getLoginLogList(LoginVO vo) {
+        return dao.getLoginLogList(vo);
+    }
+
+    public int insertLoginLog(LoginVO vo) {
+        return dao.insertLoginLog(vo);
+    }
+
 }

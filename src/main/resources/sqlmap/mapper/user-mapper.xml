@@ -221,4 +221,42 @@
          WHERE user_id = #{user_id}
     </delete>
 
+    <select id="getLoginLogList" parameterType="io.plasma.sound.signin.LoginVO" resultType="Hmap">
+        /* user-mapper.xml getLoginLogList 로그인 사용자 조회 */
+        <include refid="getLoginLogListSql" />
+        ORDER BY tb1.seq DESC
+        LIMIT 0,1
+    </select>
+
+    <sql id="getLoginLogListSql">
+        SELECT tb1.seq          /* bigint PK AI '일련번호' */
+             , tb1.login_id     /* varchar(100) comment '로그인 아이디' */
+             , tb1.login_typ    /* varchar(22) comment '로그인 유형(WEB/MWEB/APP/API)' */
+             , tb1.devc_id      /* varchar(256) comment '기기ID' */
+             , DATE_FORMAT(tb1.login_dtm, '%Y-%m-%d %H:%i:%S') login_dtm  /* datetime    입력일시 */
+          FROM tb_login_log tb1
+        <where>
+            <if test='@io.plasma.sound.util.CommonUtil@isNotEmpty(login_id)'>
+           AND tb1.login_id = TRIM(#{login_id})
+            </if>
+        </where>
+    </sql>
+
+    <insert id="insertLoginLog" parameterType="io.plasma.sound.signin.LoginVO">
+        /* user-mapper.xml insertLoginLog  로그인 이력 입력 */
+        INSERT
+          INTO tb_login
+             ( login_id
+             , login_typ
+             , devc_id
+             , login_dtm /* datetime    수정일시 */
+             )
+        VALUES
+             ( #{login_id}
+             , #{login_typ}
+             , #{devc_id}
+             , NOW()      /* datetime    수정일시 */
+             )
+    </insert>
+
 </mapper>

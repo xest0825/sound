@@ -19,7 +19,7 @@ public class SignInDAO {
     private static final String SQL_PREFIX = "User.";
 
     public List<HashMap<String, Object>> getLoginUserList(LoginVO vo) {
-        return sqlSession.selectOne(SQL_PREFIX + "getLoginUserList", vo);
+        return sqlSession.selectList(SQL_PREFIX + "getLoginUserList", vo);
     }
 
     public HashMap<String, Object> getLoginUser(LoginVO vo) {
@@ -41,5 +41,13 @@ public class SignInDAO {
 
     public int deleteLoginUser(LoginVO vo) {
         return sqlSession.delete(SQL_PREFIX + "deleteLoginUser", vo);
+    }
+
+    public List<HashMap<String, Object>> getLoginLogList(LoginVO vo) {
+        return sqlSession.selectList(SQL_PREFIX + "getLoginLogList", vo);
+    }
+
+    public int insertLoginLog(LoginVO vo) {
+        return sqlSession.insert(SQL_PREFIX + "insertLoginLog", vo);
     }
 }

@@ -100,4 +100,9 @@ public class SignInController {
         ResponseEntity<HashMap<String, Object>> ret = new ResponseEntity<>(retMap, HttpStatus.OK);
         return ret;
     }
+
+    /*
+    TODO : /sign-in/sign-in URL 필요
+     인증이 되고나면 인증결과와 로그인 이력을 함께 전달하여 화면 이동을 분기 처리 필요
+     */
 }
