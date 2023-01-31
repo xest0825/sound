@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -98,6 +99,27 @@ public class SignInController {
             retMap.put("result", "FAIL");
         }
         ResponseEntity<HashMap<String, Object>> ret = new ResponseEntity<>(retMap, HttpStatus.OK);
+        return ret;
+    }
+
+    @PostMapping("/sign-in/sign-in-log")
+    public ResponseEntity<HashMap<String, Object>> insertSignInLog(@RequestBody LoginVO vo) {
+        log.info("[POST] /sigin-in/sign-in-log");
+        HashMap<String, Object> retMap = new HashMap<>();
+        if (service.insertLoginLog(vo) > 0) {
+            retMap.put("result", "OK");
+        } else {
+            retMap.put("result", "FAIL");
+        }
+        ResponseEntity<HashMap<String, Object>> ret = new ResponseEntity<>(retMap, HttpStatus.OK);
+        return ret;
+    }
+
+    @GetMapping("/sign-in/sign-in-log")
+    public ResponseEntity<List<HashMap<String, Object>>> getSignInLogList(@RequestBody LoginVO vo) {
+        log.info("[GET] /sigin-in/sign-in-log");
+        List<HashMap<String, Object>> retList = service.getLoginLogList(vo);
+        ResponseEntity<List<HashMap<String, Object>>> ret = new ResponseEntity<>(retList, HttpStatus.OK);
         return ret;
     }
 
