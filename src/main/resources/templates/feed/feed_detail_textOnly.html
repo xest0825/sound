@@ -25,6 +25,17 @@
             $('#prev-btn').on('click', function(){
                location.href = '/feed/feed';
             });
+
+            // open reply
+            $('#view-reply-btn').on('click', function(){
+                if ($(this).hasClass("off")){
+                    $(this).removeClass("off"); // 답급을 연다
+                    $('.reply').css('display', '');
+                } else {
+                    $(this).addClass("off"); // 답글을 닫는다
+                    $('.reply').css('display', 'none');
+                }
+            });
         });
     </script>
 </head>
@@ -57,7 +68,7 @@
             </div>
             <!--//user-area-->
             <div class="detail-content">
-               <p class="detail-text">I'm going to go to work today, and I'm going to
+               <p class="detail-text">This is Contents, Blar, Blah ~ I'm going to go to work today, and I'm going to
                   blow up my boss, so please recommend me
                   some songs that can recharge my energy.</p>
 
@@ -79,7 +90,7 @@
             <div class="d-flex-center">
                <button type="button" class="btn-play" onclick="alertPopupOpen()"></button>
                <button type="button" class="btn-download"></button>
-               <button type="button" class="btn-view off"></button>
+               <button type="button" class="btn-view off" id="view-reply-btn"></button>
             </div>
          </div>
 
@@ -97,6 +108,20 @@
                   <button type="button" class="btn-more" onclick="popupOpen1()"></button>
                </div>
                <!--//track box-->
+             <dd  class="reply" style="display:none;">
+                 <div class="reply-wrap">
+                     <div class="d-flex-between pb6">
+                         <div class="d-flex-center">
+                             <div class="min-user-img">
+                                 <img src="/images/min-user.jpg" alt="프로필 사진">
+                             </div>
+                             <div class="pl6 f15">vicious</div>
+                         </div>
+                         <span class="f12 c-w50">2hour</span>
+                     </div>
+                     <p>Reply, I'm going to go to work today, and I'm going to blow up my boss, so please recommend me some songs that can recharge my energy. <span class="c-blue">#energy #fire #power</span></p>
+                 </div>
+             </dd>
 
                <div class="detail-music-box d-flex-between mb8">
                   <div class="d-flex-center">
@@ -189,7 +214,7 @@
         Should I launch the spotify app?
       </p>
       <div class="d-flex-between">
-        <button type="button" class="alert-close" onclick="alertPopupClose()">Close</button>
+        <button type="button" class="alert-close" onclick="alertPopupOpen()">Close</button>
         <button type="button" class="alert-close c-blue">Open</button>
       </div>
     </div>
