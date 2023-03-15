@@ -47,6 +47,7 @@ public class DataSourceConfig {
     }
 
 
+    @Bean
     public PlatformTransactionManager transactionManager() {
         return new DataSourceTransactionManager(DataSource());
     }

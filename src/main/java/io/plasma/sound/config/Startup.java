@@ -27,9 +27,10 @@ public class Startup {
         log.info("-io.plasma.sound App -");
         log.info("######################################");
         log.info("-LOGGING = {}-", loggingYN); // globals.properties에서 읽어옴.
+        log.info("-STAGE = {}-", stage);
         LoadInit();
         log.info("######################################");
-        log.info("-io.plazma.sound App Started -");
+        log.info("-io.plasma.sound App Started -");
         log.info("######################################");
     }
 
