@@ -64,9 +64,6 @@ public class Constants {
         String rtnURL = "";
         switch(u)
         {
-            case ROOT:
-                rtnURL = "/";
-                break;
 
             case UPLOAD_ROOT:
                 rtnURL = Constants.UPLOAD_ROOT_URL;
@@ -97,9 +94,6 @@ public class Constants {
         String rtnPATH = "";
         switch(u)
         {
-            case ROOT:
-                rtnPATH = Constants.WEB_ROOT_PATH;
-                break;
 
             case UPLOAD_ROOT:
                 rtnPATH = Constants.UPLOAD_ROOT_PATH;

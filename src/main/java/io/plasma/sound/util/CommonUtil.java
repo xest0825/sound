@@ -1,9 +1,11 @@
 package io.plasma.sound.util;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
+
 import lombok.extern.slf4j.Slf4j;
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
-import org.springframework.boot.configurationprocessor.json.JSONArray;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -15,6 +17,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URLDecoder;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.sql.Timestamp;
@@ -41,8 +45,7 @@ public class CommonUtil {
             Date toDate = new SimpleDateFormat("yyyyMMddHHmmss").parse(endDAte);
 
             long diffMil = toDate.getTime() - frDate.getTime();
-            long diffSec = diffMil / 1000;
-            return diffSec;
+            return diffMil / 1000;
 
         } catch (ParseException e) {
 
@@ -62,9 +65,7 @@ public class CommonUtil {
         String userAgent = request.getHeader("user-agent");
         boolean mobile1 = userAgent.matches(".*(iPhone|iPod|iPad|Android|Windows CE|BlackBerry|Symbian|Windows Phone|webOS|Opera Mini|Opera Mobi|POLARIS|IEMobile|lgtelecom|nokia|SonyEricsson).*");
         boolean mobile2 = userAgent.matches(".*(LG|SAMSUNG|Samsung).*");
-        if (mobile1 || mobile2) {
-            return true;
-        }
+        if (mobile1 || mobile2) { return true; }
         return false;
     }
 
@@ -87,7 +88,7 @@ public class CommonUtil {
      */
     public static boolean isEmail(String str) {
         //aaa@bbb.com
-        return str.matches("^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$");
+        return str.matches("^[_a-z\\d-]+(.[_a-z\\d-]+)*@(?:\\w+\\.)+\\w+$");
     }
 
     /**
@@ -97,20 +98,20 @@ public class CommonUtil {
      * @since 2018.06.11
      **/
     public static String generateNumber(int length) throws NoSuchAlgorithmException {
-        String numStr = "1";
-        String plusNumStr = "1";
+        StringBuilder numStr = new StringBuilder("1");
+        StringBuilder plusNumStr = new StringBuilder("1");
 
         for (int i = 0; i < length; i++) {
-            numStr += "0";
+            numStr.append("0");
             if (i != length - 1) {
-                plusNumStr += "0";
+                plusNumStr.append("0");
             }
         }
 
         Random random = SecureRandom.getInstanceStrong();
-        int result = random.nextInt(Integer.parseInt(numStr)) + Integer.parseInt(plusNumStr);
-        if (result > Integer.parseInt(numStr)) {
-            result = result - Integer.parseInt(plusNumStr);
+        int result = random.nextInt(Integer.parseInt(numStr.toString())) + Integer.parseInt(plusNumStr.toString());
+        if (result > Integer.parseInt(numStr.toString())) {
+            result = result - Integer.parseInt(plusNumStr.toString());
         }
         return "" + result;
     }
@@ -134,8 +135,7 @@ public class CommonUtil {
      * @return 결과 calendar객체
      */
     public static Calendar getCalendarInstance() {
-        Calendar retCal = Calendar.getInstance();
-        return retCal;
+        return Calendar.getInstance();
     }
 
 
@@ -326,7 +326,7 @@ public class CommonUtil {
      * @see java.util.Calendar
      */
     public static String getDate(String yyyymmdd, int addDay) {
-        Calendar cal = Calendar.getInstance(Locale.FRANCE);
+        Calendar cal = Calendar.getInstance(Locale.KOREA);
         int new_yy = Integer.parseInt(yyyymmdd.substring(0, 4));
         int new_mm = Integer.parseInt(yyyymmdd.substring(4, 6));
         int new_dd = Integer.parseInt(yyyymmdd.substring(6, 8));
@@ -357,7 +357,7 @@ public class CommonUtil {
      */
     public static String getWeekToDay(String yyyymm, int week, String pattern) {
 
-        Calendar cal = Calendar.getInstance(Locale.FRANCE);
+        Calendar cal = Calendar.getInstance(Locale.KOREA);
 
         int new_yy = Integer.parseInt(yyyymm.substring(0, 4));
         int new_mm = Integer.parseInt(yyyymm.substring(4, 6));
@@ -374,7 +374,7 @@ public class CommonUtil {
                 + (cal.getFirstDayOfWeek() - cal.get(Calendar.DAY_OF_WEEK)));
 
         SimpleDateFormat formatter = new SimpleDateFormat(pattern,
-                Locale.FRANCE);
+                Locale.KOREA);
 
         return formatter.format(cal.getTime());
 
@@ -432,7 +432,7 @@ public class CommonUtil {
      * @see java.util.Calendar
      */
     public static int getWeek(String yyyymmdd, int addDay) {
-        Calendar cal = Calendar.getInstance(Locale.FRANCE);
+        Calendar cal = Calendar.getInstance(Locale.KOREA);
         int new_yy = Integer.parseInt(yyyymmdd.substring(0, 4));
         int new_mm = Integer.parseInt(yyyymmdd.substring(4, 6));
         int new_dd = Integer.parseInt(yyyymmdd.substring(6, 8));
@@ -440,8 +440,7 @@ public class CommonUtil {
         cal.set(new_yy, new_mm - 1, new_dd);
         cal.add(Calendar.DATE, addDay);
 
-        int week = cal.get(Calendar.DAY_OF_WEEK);
-        return week;
+        return cal.get(Calendar.DAY_OF_WEEK);
     }
 
     /**
@@ -495,7 +494,7 @@ public class CommonUtil {
      * @return boolean
      */
     public static boolean isCorrect(String yyyymmdd) {
-        boolean flag = false;
+        boolean flag;
         if (yyyymmdd.length() < 8)
             return false;
         try {
@@ -557,8 +556,7 @@ public class CommonUtil {
      */
     public static int getDayOfWeek() {
         Calendar rightNow = Calendar.getInstance();
-        int day_of_week = rightNow.get(Calendar.DAY_OF_WEEK);
-        return day_of_week;
+        return rightNow.get(Calendar.DAY_OF_WEEK);
     }//:
 
 
@@ -576,8 +574,7 @@ public class CommonUtil {
 
         cal.set(new_yy, new_mm - 1, new_dd);
 
-        int day_of_week = cal.get(Calendar.DAY_OF_WEEK);
-        return day_of_week;
+        return cal.get(Calendar.DAY_OF_WEEK);
     }//:
 
 
@@ -594,8 +591,7 @@ public class CommonUtil {
     public static int getWeekOfYear() {
         Locale LOCALE_COUNTRY = Locale.KOREA;
         Calendar rightNow = Calendar.getInstance(LOCALE_COUNTRY);
-        int week_of_year = rightNow.get(Calendar.WEEK_OF_YEAR);
-        return week_of_year;
+        return rightNow.get(Calendar.WEEK_OF_YEAR);
     }//:
 
     /**
@@ -612,8 +608,7 @@ public class CommonUtil {
 
         cal.set(new_yy, new_mm - 1, new_dd);
 
-        int week = cal.get(Calendar.WEEK_OF_YEAR);
-        return week;
+        return cal.get(Calendar.WEEK_OF_YEAR);
     }//:
 
 
@@ -630,8 +625,7 @@ public class CommonUtil {
     public static int getWeekOfMonth() {
         Locale LOCALE_COUNTRY = Locale.KOREA;
         Calendar rightNow = Calendar.getInstance(LOCALE_COUNTRY);
-        int week_of_month = rightNow.get(Calendar.WEEK_OF_MONTH);
-        return week_of_month;
+        return rightNow.get(Calendar.WEEK_OF_MONTH);
     }//:
 
 
@@ -654,9 +648,7 @@ public class CommonUtil {
 
         cal.set(new_yy, new_mm - 1, new_dd);
 
-        int week = cal.get(Calendar.WEEK_OF_MONTH);
-        return week;
-
+        return cal.get(Calendar.WEEK_OF_MONTH);
     }//:
 
 
@@ -675,9 +667,8 @@ public class CommonUtil {
     public static long getDifferDays(String startDate, String endDate) {
         GregorianCalendar StartDate = getGregorianCalendar(startDate);
         GregorianCalendar EndDate = getGregorianCalendar(endDate);
-        long difer = (EndDate.getTime().getTime() - StartDate.getTime()
+        return (EndDate.getTime().getTime() - StartDate.getTime()
                 .getTime()) / 86400000;
-        return difer;
     }//:
 
 
@@ -709,7 +700,7 @@ public class CommonUtil {
             return -1;
         }
 
-    }//:
+    }
 
 
     /**
@@ -753,11 +744,8 @@ public class CommonUtil {
         int mm = Integer.parseInt(yyyymmdd.substring(4, 6));
         int dd = Integer.parseInt(yyyymmdd.substring(6));
 
-        GregorianCalendar calendar = new GregorianCalendar(yyyy, mm - 1, dd, 0,
+        return new GregorianCalendar(yyyy, mm - 1, dd, 0,
                 0, 0);
-
-        return calendar;
-
     }//:
 
 
@@ -813,13 +801,11 @@ public class CommonUtil {
             separator = ". ";
         }
 
-        StringBuilder sb = new StringBuilder();
-        sb.append(date.substring(0, 4))
-                .append(separator)
-                .append(date.substring(4, 6))
-                .append(separator)
-                .append(date.substring(6, 8));
-        return sb.toString();
+        return date.substring(0, 4) +
+                separator +
+                date.substring(4, 6) +
+                separator +
+                date.substring(6, 8);
     }
 
     /**
@@ -831,7 +817,7 @@ public class CommonUtil {
      * @return formatted date string
      */
     public static String getYearMonth(Calendar c, int gap, String format) {
-        String resultString = "";
+        String resultString;
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH) + 1 + gap;
         c.set(year, month - 1, 1);
@@ -852,7 +838,7 @@ public class CommonUtil {
             try {
                 decodedURL = URLDecoder.decode(url, "UTF-8");
             } catch (UnsupportedEncodingException e) {
-
+                e.printStackTrace();
             }
         }
 
@@ -900,8 +886,7 @@ public class CommonUtil {
      * @return String message without XML or HTML
      */
     public String stripHTMLTags(String message) {
-        String noHTMLString = message.replaceAll("\\<.*?\\>", "");
-        return noHTMLString;
+        return message.replaceAll("<.*?>", "");
     }
 
     /**
@@ -974,7 +959,7 @@ public class CommonUtil {
      * @return 대문자 반환
      */
     public String toUpperCase(String str) {
-        if (!StringUtils.isEmpty(str)) {
+        if (StringUtils.hasText(str)) {
             return str.toUpperCase();
         }
         return "";
@@ -987,7 +972,7 @@ public class CommonUtil {
      * @return 소문자 반환
      */
     public String toLowerCase(String str) {
-        if (!StringUtils.isEmpty(str)) {
+        if (StringUtils.hasText(str)) {
             return str.toLowerCase();
         }
         return "";
@@ -1000,7 +985,7 @@ public class CommonUtil {
      * @return
      */
     public static String getStringFromCLOB(java.sql.Clob clob) {
-        StringBuffer sbf = new StringBuffer();
+        StringBuilder sbf = new StringBuilder();
         java.io.Reader br = null;
         char[] buf = new char[1024];
         int readcnt;
@@ -1010,13 +995,13 @@ public class CommonUtil {
                 sbf.append(buf, 0, readcnt);
             }
         } catch (Exception e) {
-
+            e.printStackTrace();
         } finally {
             if (br != null)
                 try {
                     br.close();
                 } catch (IOException e) {
-
+                    e.printStackTrace();
                 }
         }
         return sbf.toString();
@@ -1030,10 +1015,10 @@ public class CommonUtil {
      * @return
      */
     public String getHiddenName(String name) {
-        String tmp = "";
+        String tmp;
 
         if (name.length() > 1) {
-            tmp = name.substring(0, 1) + "○" + name.substring(2);
+            tmp = name.charAt(0) + "○" + name.substring(2);
         } else {
             tmp = name;
         }
@@ -1127,18 +1112,13 @@ public class CommonUtil {
      * @param charset  문자셋
      */
     public static void printToClient(HttpServletResponse response, String data, String charset) {
-        PrintWriter out = null;
 
-        try {
-            out = new PrintWriter(response.getWriter());
+        try (PrintWriter out = new PrintWriter(response.getWriter())) {
             out.print(data);
             out.flush();
         } catch (Exception e) {
             response.setStatus(500);
             log.error(e.getMessage());
-        } finally {
-            if (out != null)
-                out.close();
         }
     }
 
@@ -1174,14 +1154,14 @@ public class CommonUtil {
 
         Map map = request.getParameterMap();
         Iterator it = map.keySet().iterator();
-        Object key = null;
-        String[] value = null;
+        Object key;
+        String[] value;
 
         while (it.hasNext()) {
             key = it.next();
             value = (String[]) map.get(key);
             for (int i = 0; i < value.length; i++) {
-                // log.info("key ==> " + key +  " value ===> " +value[i]  + " index i ==> " + i);
+                log.info("key : " + key +  " value : " +value[i]  + " index[" + i + "]");
             }
         }
 
@@ -1212,9 +1192,9 @@ public class CommonUtil {
             //log.info(process.waitFor());
 
             br = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            //for(String str; (str = br.readLine())!=null;){
-            //log.info(str);
-            //}
+            for(String str; (str = br.readLine())!=null;){
+                log.info(str);
+            }
 
             if (process.exitValue() != 0) {
                 log.error("************************");
@@ -1226,16 +1206,15 @@ public class CommonUtil {
             log.debug("************************");
             log.debug("프로그램 종료");
             log.debug("************************");
-        } catch (IOException ioE) {
+        } catch (Exception ioE) {
             log.error(ioE.getMessage());
-        } catch (Exception e) {
-            log.error(e.getMessage());
         } finally {
             if (br != null) {
                 try {
                     br.close();
                 } catch (IOException ioE) {
-                    ioE.getMessage();
+                    String message = ioE.getMessage();
+                    log.error(message);
                 }
             }
         }
@@ -1245,10 +1224,10 @@ public class CommonUtil {
 
     @SuppressWarnings("rawtypes")
     public static boolean isEmpty(Object obj) {
-        if (obj instanceof String) return obj == null || "".equals(obj.toString().trim());
-        else if (obj instanceof List) return obj == null || ((List<?>) obj).isEmpty();
-        else if (obj instanceof Map) return obj == null || ((Map) obj).isEmpty();
-        else if (obj instanceof Object[]) return obj == null || Array.getLength(obj) == 0;
+        if (obj instanceof String) return "".equals(obj.toString().trim());
+        else if (obj instanceof List) return ((List<?>) obj).isEmpty();
+        else if (obj instanceof Map) return ((Map) obj).isEmpty();
+        else if (obj instanceof Object[]) return Array.getLength(obj) == 0;
         else return obj == null;
     }
 
@@ -1280,23 +1259,16 @@ public class CommonUtil {
      * @param resultcode 결과코드 200 정상 500 에러 etc...
      * @throws Exception
      */
-    public void sendjson(HttpServletResponse response, JSONPObject jsononject, int resultcode) {
+    public static void sendjson(HttpServletResponse response, JSONObject jsononject, int resultcode) {
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.setStatus(resultcode);
-        PrintWriter out = null;
 
-        try {
-            out = response.getWriter();
-
+        try (PrintWriter out = response.getWriter()) {
             out.println(jsononject.toString());
-        } catch (IOException ioE) {
+        } catch (Exception ioE) {
             log.error(ioE.getMessage());
-        } catch (Exception e) {
-            log.error(e.getMessage());
-        } finally {
-            if (out != null) out.close();
         }
     }
 
@@ -1313,18 +1285,11 @@ public class CommonUtil {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.setStatus(resultcode);
-        PrintWriter out = null;
 
-        try {
-            out = response.getWriter();
-
+        try (PrintWriter out = response.getWriter()) {
             out.println(jsononarry.toString());
-        } catch (IOException ioE) {
+        } catch (Exception ioE) {
             log.error(ioE.getMessage());
-        } catch (Exception e) {
-            log.error(e.getMessage());
-        } finally {
-            if (out != null) out.close();
         }
     }
 
@@ -1340,18 +1305,17 @@ public class CommonUtil {
      */
     @SuppressWarnings("rawtypes")
     public static Object convertMapToObject(Map map, Object objClass) {
-        String keyAttribute = null;
+        String keyAttribute;
         String setMethodString = "set";
-        String methodString = null;
-        Iterator itr = map.keySet().iterator();
+        String methodString;
 
-        while (itr.hasNext()) {
+        for (Object o : map.keySet()) {
 
-            keyAttribute = (String) itr.next();
+            keyAttribute = (String) o;
             methodString = setMethodString + keyAttribute.substring(0, 1).toUpperCase() + keyAttribute.substring(1);
 
             try {
-                Class<? extends Object> paramClass = objClass.getClass();
+                Class<?> paramClass = objClass.getClass();
 
                 Method[] methods = paramClass.getDeclaredMethods();    //VO
                 Method[] superClassmethods = paramClass.getSuperclass().getDeclaredMethods();    //BaseVO
@@ -1393,13 +1357,9 @@ public class CommonUtil {
                     }
                 }
             } catch (SecurityException e) {
-
-            } catch (IllegalAccessException e) {
-
-            } catch (IllegalArgumentException e) {
-
-            } catch (InvocationTargetException e) {
-
+                e.printStackTrace();
+            } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+                e.getStackTrace();
             }
         }
         return objClass;
@@ -1428,10 +1388,8 @@ public class CommonUtil {
             log.debug("resultMap[{}]", resultMap);
 
             return resultMap;
-        } catch (IllegalArgumentException e) {
-
-        } catch (IllegalAccessException e) {
-
+        } catch (IllegalArgumentException | IllegalAccessException e) {
+            e.getStackTrace();
         }
 
         return null;
@@ -1447,7 +1405,7 @@ public class CommonUtil {
     public static Map<String, Object> ConvertObjectToMapLowerKey(Object obj) {
         try {
             Field[] fields = obj.getClass().getDeclaredFields();
-            Map<String, Object> resultMap = new HashMap<String, Object>();
+            Map<String, Object> resultMap = new HashMap<>();
 
             for (int i = 0; i <= fields.length - 1; i++) {
                 fields[i].setAccessible(true);
@@ -1459,10 +1417,8 @@ public class CommonUtil {
 
             return resultMap;
 
-        } catch (IllegalArgumentException e) {
-
-        } catch (IllegalAccessException e) {
-
+        } catch (IllegalArgumentException | IllegalAccessException e) {
+            e.getStackTrace();
         }
 
         return null;
@@ -1501,14 +1457,14 @@ public class CommonUtil {
         Properties prop = System.getProperties();
         String webRoot = prop.getProperty("web.root");
         log.info("tmpRoot=" + webRoot);
-        String properties_dir = "";
+        String properties_dir;
         if (webRoot == null) {
             properties_dir = prop.getProperty("user.dir") + "/src/main/resources/properties/";
         } else {
             properties_dir = webRoot + "WEB-INF/classes/resources/properties/";
         }
 
-        String properties_file = "";
+        String properties_file;
         if (pathandFile == null) {
             properties_file = properties_dir + "globals.xml";
         } else {
@@ -1520,9 +1476,9 @@ public class CommonUtil {
         // read globals.properties
         Properties global_properties = new Properties();
         try {
-            global_properties.load(new FileInputStream(properties_file));
+            global_properties.load(Files.newInputStream(Paths.get(properties_file)));
         } catch (IOException ioe) {
-            ioe.getMessage();
+            ioe.getStackTrace();
         }
 
         return global_properties;
@@ -1564,7 +1520,7 @@ public class CommonUtil {
      */
     public static void sendAlertMsg(HttpServletResponse response, String message) {
 
-        String sContents = "";
+        String sContents;
         PrintWriter out = null;
 
         try {
@@ -1588,12 +1544,12 @@ public class CommonUtil {
     // 임시비밀번호 만들기
     public static String temporaryPassword(int size) {
 
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder buffer = new StringBuilder();
         SecureRandom random = new SecureRandom();
         random.setSeed(new Date().getTime());
 
-        String chars[] = "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,0,1,2,3,4,5,6,7,8,9".split(",");
-        String SpecialChars[] = "~,!,@,#,$,%,^,&,*,(,),+,-".split(",");
+        String[] chars = "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,0,1,2,3,4,5,6,7,8,9".split(",");
+        String[] SpecialChars = "~,!,@,#,$,%,^,&,*,(,),+,-".split(",");
 
         int SpCnt = random.nextInt(9);
 
@@ -1617,7 +1573,7 @@ public class CommonUtil {
         if (args == null || args.length <= 0) return message;
 
         String[] splitMsgs = message.split("%");
-        if (splitMsgs == null || splitMsgs.length <= 1)
+        if (splitMsgs.length <= 1)
             return message;
 
         for (int i = 0; i < args.length; i++) {
@@ -1640,15 +1596,15 @@ public class CommonUtil {
      * request 매핑
      */
     @SuppressWarnings("rawtypes")
-    public static Map<String, String> setParams(HttpServletRequest request) throws Exception {
+    public static Map<String, String> setParams(HttpServletRequest request) {
         Enumeration params = request.getParameterNames();
-        Map<String, String> map = new HashMap<String, String>();
-        String key = "";
-        String mapData = "";
+        Map<String, String> map = new HashMap<>();
+        String key;
+        String mapData;
 
         while (params.hasMoreElements()) {
             key = (String) params.nextElement();
-            mapData = request.getParameter(key) == null ? "" : request.getParameter(key).toString();
+            mapData = request.getParameter(key) == null ? "" : request.getParameter(key);
             if (mapData.length() > 0) {
                 if ("request".equals(key)) {
                     continue;
@@ -1663,63 +1619,81 @@ public class CommonUtil {
     // 주민번호로 생일추출
     public String setRealBirthday(String ssn) {
         String ssnSubFristNumber = ssn.substring(7, 8);
-        String realBirthday = "";
-        String year = "";
-        String month = "";
-        String day = "";
+        String realBirthday;
+        String year;
+        String month;
+        String day;
 
-        if ("1".equals(ssnSubFristNumber)) {
-            realBirthday = "19" + ssn.substring(0, 6);
-        } else if ("2".equals(ssnSubFristNumber)) {
-            realBirthday = "19" + ssn.substring(0, 6);
-        } else if ("3".equals(ssnSubFristNumber)) {
-            realBirthday = "20" + ssn.substring(0, 6);
-        } else if ("4".equals(ssnSubFristNumber)) {
-            realBirthday = "20" + ssn.substring(0, 6);
-        } else if ("5".equals(ssnSubFristNumber)) {
-            realBirthday = "19" + ssn.substring(0, 6);
-        } else if ("6".equals(ssnSubFristNumber)) {
-            realBirthday = "19" + ssn.substring(0, 6);
-        } else if ("7".equals(ssnSubFristNumber)) {
-            realBirthday = "20" + ssn.substring(0, 6);
-        } else if ("8".equals(ssnSubFristNumber)) {
-            realBirthday = "20" + ssn.substring(0, 6);
-        } else {
-            realBirthday = "19" + ssn.substring(0, 6);
+        switch (ssnSubFristNumber) {
+            case "1":
+                realBirthday = "19" + ssn.substring(0, 6);
+                break;
+            case "2":
+                realBirthday = "19" + ssn.substring(0, 6);
+                break;
+            case "3":
+                realBirthday = "20" + ssn.substring(0, 6);
+                break;
+            case "4":
+                realBirthday = "20" + ssn.substring(0, 6);
+                break;
+            case "5":
+                realBirthday = "19" + ssn.substring(0, 6);
+                break;
+            case "6":
+                realBirthday = "19" + ssn.substring(0, 6);
+                break;
+            case "7":
+                realBirthday = "20" + ssn.substring(0, 6);
+                break;
+            case "8":
+                realBirthday = "20" + ssn.substring(0, 6);
+                break;
+            default:
+                realBirthday = "19" + ssn.substring(0, 6);
+                break;
         }
 
         year = realBirthday.substring(0, 4) + "-";
         month = realBirthday.substring(4, 6) + "-";
         day = realBirthday.substring(6);
 
-        realBirthday = year + month + day;
-
-        return realBirthday;
+        return year + month + day;
     }
 
     // 주민번호로 성별추출
     public String setGenderType(String ssn) {
-        String genderType = "";
+        String genderType;
         String ssnSubFristNumber = ssn.substring(7, 8);
 
-        if ("1".equals(ssnSubFristNumber)) {
-            genderType = "1";
-        } else if ("2".equals(ssnSubFristNumber)) {
-            genderType = "2";
-        } else if ("3".equals(ssnSubFristNumber)) {
-            genderType = "1";
-        } else if ("4".equals(ssnSubFristNumber)) {
-            genderType = "2";
-        } else if ("5".equals(ssnSubFristNumber)) {
-            genderType = "5";
-        } else if ("6".equals(ssnSubFristNumber)) {
-            genderType = "6";
-        } else if ("7".equals(ssnSubFristNumber)) {
-            genderType = "5";
-        } else if ("8".equals(ssnSubFristNumber)) {
-            genderType = "6";
-        } else {
-            genderType = "";
+        switch (ssnSubFristNumber) {
+            case "1":
+                genderType = "1";
+                break;
+            case "2":
+                genderType = "2";
+                break;
+            case "3":
+                genderType = "1";
+                break;
+            case "4":
+                genderType = "2";
+                break;
+            case "5":
+                genderType = "5";
+                break;
+            case "6":
+                genderType = "6";
+                break;
+            case "7":
+                genderType = "5";
+                break;
+            case "8":
+                genderType = "6";
+                break;
+            default:
+                genderType = "";
+                break;
         }
         return genderType;
 
@@ -1757,10 +1731,8 @@ public class CommonUtil {
 
             return resultMap;
 
-        } catch (IllegalArgumentException e) {
-
-        } catch (IllegalAccessException e) {
-
+        } catch (IllegalArgumentException | IllegalAccessException e) {
+            e.getStackTrace();
         }
 
         return null;
@@ -1786,8 +1758,7 @@ public class CommonUtil {
 
         // 주민&기준일 비교 시 기준일 넘기면 1 기준일 넘기지 않으면 0.
         if (birthDate.compareTo(dateChk) > 0) {
-            flag = false;
-            return flag;
+            return false;
         }
 
         int[] multiply = {2, 3, 4, 5, 6, 7, 8, 9, 2, 3, 4, 5};
